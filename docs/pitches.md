@@ -1,3 +1,5 @@
+Link to GitHub Repository: https://github.com/CS411-Team-Project/pictle
+
 Preface - Everything in this file is tentative to change
 
 # **Pictle - a Wordle type guessing game with pictures**
