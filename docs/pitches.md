@@ -45,6 +45,15 @@ React.js
 
 - Database: SQL or PostgreSQL 
 
+## Possible features
+
+**Keyboard and letter interface** for guessing words similar to wordle (yellow if the letter is *in* the word, red if it is not in the word, and green if it is in the right spot).
+
+**Ability to share guesses** on social media platforms like Twitter and Instagram, similar to how you can share Wordle guesses. (Screenshot of image and and guesses interface)
+
+**Blitz mode** in which each guess has to be made within a very short time limit (5 seconds maybe?), this could also help making a 1 v 1 mode possible.
+
+**Hints feature** that uses metadata from the API to give hints to the user (ex. "This videogame was released in 2017", "This album was released in 2016", "Stanley Kubrick directed this film", etc)
 
 
 
