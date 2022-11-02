@@ -1,43 +1,37 @@
 import axios from 'axios'
 import qs from 'qs'
 
-const CLIENT_ID = 'febfffb4dd844f15920137f6c2862428'
-const CLIENT_SECRET = '8a8dff8e325c477db469142b2271cfca'
-const REDIRECT_URI = 'https://localhost:8000/callback'
-const auth_token = Buffer.from(
-    `${CLIENT_ID}:${CLIENT_SECRET}`,
+const authToken = Buffer.from(
+    `${process.env.SPOTIFY_CLIENT_ID}:${process.env.SPOTIFY_CLIENT_SECRET}`,
     'utf-8'
 ).toString('base64')
 
-export const getAuth = async () => {
+export const getSpotifyAuth = async () => {
     try {
-        const token_url = 'https://accounts.spotify.com/api/token'
+        const tokenURL = 'https://accounts.spotify.com/api/token'
         const data = qs.stringify({ grant_type: 'client_credentials' })
 
-        const response = await axios.post(token_url, data, {
+        const response = await axios.post(tokenURL, data, {
             headers: {
-                Authorization: `Basic ${auth_token}`,
+                Authorization: `Basic ${authToken}`,
                 'Content-Type': 'application/x-www-form-urlencoded',
             },
         })
-
-        console.log('Spotify Token ' + response.data.access_token)
         return response.data.access_token
     } catch (error) {
         console.log(error)
     }
 }
 
-export const getAudioFeatures_Track = async (track_id) => {
-    const access_token = await getAuth()
+export const getTestTrack = async (trackID) => {
+    const spotifyToken = await getSpotifyAuth()
 
-    const api_url = `https://api.spotify.com/v1/albums/${track_id}`
-
+    const apiURL = `https://api.spotify.com/v1/albums/${trackID}`
     try {
-        const response = await axios.get(api_url, {
+        const response = await axios.get(apiURL, {
             headers: {
                 'Content-Type': 'application/json',
-                Authorization: `Bearer ${access_token}`,
+                Authorization: `Bearer ${spotifyToken}`,
                 Host: 'api.spotify.com',
             },
         })

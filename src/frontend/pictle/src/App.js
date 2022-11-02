@@ -20,7 +20,7 @@ function App() {
         result && (
             <>
                 <h1>{result}</h1>
-                <img src={testImage} alt="testImage" />
+                <img src={"https:"+testImage} alt="testImage" />
             </>
         )
     )
