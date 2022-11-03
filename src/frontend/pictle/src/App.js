@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import './App.css'
 import axios from './axios'
+import ButtonAppBar from './ButtonAppBar'
+
 
 function App() {
     const [result, setResult] = useState('')
@@ -19,6 +21,7 @@ function App() {
     return (
         result && (
             <>
+                <ButtonAppBar />
                 <h1>{result}</h1>
                 <img src={"https:"+testImage} alt="testImage" />
             </>
