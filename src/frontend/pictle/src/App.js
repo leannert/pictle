@@ -23,7 +23,7 @@ function App() {
             <>
                 <ButtonAppBar />
                 <h1>{result}</h1>
-                <img src={"https:"+testImage} alt="testImage" />
+                <img src={testImage} alt="testImage" width={250} />
             </>
         )
     )

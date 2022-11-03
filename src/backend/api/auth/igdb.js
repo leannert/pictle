@@ -30,7 +30,7 @@ export const getTestGameCover = async () => {
             },
             data: "fields alpha_channel,animated,checksum,game,height,image_id,url,width; where game = 7346; limit 1;"
           })
-        console.log('url from igdb ' + response.data[0].url)
+          
         return response.data[0].url.toString()
     }
     catch (error) {
