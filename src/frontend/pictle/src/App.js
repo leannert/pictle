@@ -3,7 +3,6 @@ import './App.css'
 import axios from './axios'
 import ButtonAppBar from './ButtonAppBar'
 
-
 function App() {
     const [result, setResult] = useState('')
     const [testImage, setTestImage] = useState('')

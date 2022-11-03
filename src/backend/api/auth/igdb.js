@@ -7,9 +7,9 @@ export const getTwitchAuth = async () => {
         const response = await axios.post(tokenURL, {
             client_id: process.env.TWITCH_CLIENT_ID,
             client_secret: process.env.TWITCH_CLIENT_SECRET,
-            grant_type: 'client_credentials'
+            grant_type: 'client_credentials',
         })
-        
+
         return response.data.access_token
     } catch (error) {
         console.log(error)
@@ -21,21 +21,18 @@ export const getTestGameCover = async () => {
 
     try {
         const response = await axios({
-            url: "https://api.igdb.com/v4/covers",
+            url: 'https://api.igdb.com/v4/covers',
             method: 'POST',
             headers: {
-                'Accept': 'application/json',
+                Accept: 'application/json',
                 'Client-ID': process.env.TWITCH_CLIENT_ID,
-                'Authorization': 'Bearer ' + twitchToken
+                Authorization: 'Bearer ' + twitchToken,
             },
-            data: "fields alpha_channel,animated,checksum,game,height,image_id,url,width; where game = 7346; limit 1;"
-          })
-          
+            data: 'fields alpha_channel,animated,checksum,game,height,image_id,url,width; where game = 7346; limit 1;',
+        })
+
         return response.data[0].url.toString()
-    }
-    catch (error) {
+    } catch (error) {
         console.log(error.response)
     }
-
 }
-    

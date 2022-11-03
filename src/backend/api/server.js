@@ -15,21 +15,23 @@ server.get('/api/hello', (req, res) => {
     res.status(200).send('Message from the server')
 })
 
-// configure mongoose
+// connect to mongoose
 
-const uri = "mongodb+srv://markmaci:"+process.env.MONGO_DB_PASSWORD+"@cluster0.cxshujt.mongodb.net/?retryWrites=true&w=majority";
+const uri =
+    'mongodb+srv://markmaci:' +
+    process.env.MONGO_DB_PASSWORD +
+    '@pictledb.gnokgad.mongodb.net/?retryWrites=true&w=majority'
 mongoose
-    .connect(uri, { 
-        useNewUrlParser: true
-      })
+    .connect(uri, {
+        useNewUrlParser: true,
+    })
     .then(() => console.log('MongoDB connected...'))
-    .catch(err => console.log(err));
-// console.log(global.db)
+    .catch((err) => console.log(err))
 
+// api authentication test
 const authenticationStatus = await authTest()
 
-
-const testImage = await getTestPoster(128)
+const testImage = await getTestPoster(1396)
 
 server.get('/dev/testimage', (req, res) => {
     res.status(200).send({ testImage })
