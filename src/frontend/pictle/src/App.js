@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './App.css'
 import axios from './axios'
-import ButtonAppBar from './ButtonAppBar'
+import MenuAppBar from './components/MenuAppBar'
 
 function App() {
     const [result, setResult] = useState('')
@@ -20,7 +20,7 @@ function App() {
     return (
         result && (
             <>
-                <ButtonAppBar />
+                <MenuAppBar />
                 <h1>{result}</h1>
                 <img src={testImage} alt="testImage" width={250} />
             </>
