@@ -1,43 +1,52 @@
 import mongoose from 'mongoose'
 import uniqueValidator from 'mongoose-unique-validator'
+import crypto from 'crypto'
 
-export const UserSchema = new mongoose.Schema(
-  {
-    ObjectId: {
-      type: String,
-      required: [true, "can't be blank"],
-      index: true,
+const pfpSeed = crypto.randomBytes(64).toString('hex')
+
+const UserSchema = new mongoose.Schema(
+    {
+        ObjectId: {
+            type: mongoose.Types.ObjectId,
+            required: [true, "can't be blank"],
+            default: mongoose.Types.ObjectId(),
+        },
+
+        username: {
+            type: String,
+            lowercase: true,
+            required: [true, "can't be blank"],
+            match: [/^[a-zA-Z0-9]+$/, 'is invalid'],
+            index: true,
+            unique: true,
+        },
+
+        email: {
+            type: String,
+            lowercase: true,
+            required: [true, "can't be blank"],
+            match: [/\S+@\S+\.\S+/, 'is invalid'],
+            index: true,
+            unique: true,
+        },
+
+        password: {
+            type: String,
+            required: [true, "can't be blank"],
+        },
+        pfp: {
+            type: String,
+            required: [true, "can't be blank"],
+            default:
+                'https://avatars.dicebear.com/api/pixel-art/+' +
+                pfpSeed +
+                '.svg',
+        },
     },
+    { timestamps: true },
+    { collection: 'users' }
+)
 
-    username: {
-      type: String,
-      lowercase: true,
-      required: [true, "can't be blank"],
-      match: [/^[a-zA-Z0-9]+$/, "is invalid"],
-      index: true,
-    },
+UserSchema.plugin(uniqueValidator, { message: 'is already taken.' })
 
-    email: {
-      type: String,
-      lowercase: true,
-      required: [true, "can't be blank"],
-      match: [/\S+@\S+\.\S+/, "is invalid"],
-      index: true,
-    },
-    
-    password: {
-        type: String,
-        required: [true, "can't be blank"],
-    },
-    pfp: String,
-    hash: String,
-    salt: String,
-  },
-  { timestamps: true }
-);
-
-UserSchema.plugin(uniqueValidator, {message: 'is already taken.'});
-
-  
-
-mongoose.model("User", UserSchema);
+export const User = mongoose.model('user', UserSchema)

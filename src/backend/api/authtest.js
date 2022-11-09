@@ -11,9 +11,9 @@ export const authTest = async () => {
         const testPoster = await getTestPoster(128)
         console.log('tmdb API authenticated...')
 
-        return null
+        return true
     } catch (error) {
         console.log(error)
-        return console.error('authTest failed')
+        return false
     }
 }

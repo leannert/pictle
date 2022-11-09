@@ -1,15 +1,16 @@
 import {} from 'dotenv/config'
 import express from 'express'
 import { connectToMongoDB } from './db/conn.js'
-import { getTwitchAuth, getTestGameCover } from './auth/igdb.js'
-import { getSpotifyAuth, getTestTrack } from './auth/spotify.js'
-import { getTestPoster } from './auth/tmdb.js'
-import { authTest } from './auth/authtest.js'
-import mongoose from 'mongoose'
-import Types from 'mongoose'
+import { getTwitchAuth, getTestGameCover } from './api/igdb.js'
+import { getSpotifyAuth, getTrack, getPlaylistTracks } from './api/spotify.js'
+import { getTestPoster } from './api/tmdb.js'
+import { authTest } from './api/authtest.js'
 import { users } from './db/init.js'
-import { createAvatar } from '@dicebear/avatars'
-
+import { User } from './db/models/User.js'
+import { Track } from './db/models/Track.js'
+import { usersRouter } from './routes/users.js'
+import { tracksRouter } from './routes/tracks.js'
+import mongoose from 'mongoose'
 
 let server = express()
 const PORT = process.env.PORT || 8000
@@ -21,12 +22,46 @@ server.get('/api/hello', (req, res) => {
 })
 
 // connect to MongoDB
-let db = connectToMongoDB()
+let db = await connectToMongoDB()
 // create users collection
-let usersCollection = users()
+// let usersCollection = users()
+
+// create tracks collection
+
+server.use('/users', usersRouter)
+server.use('/tracks', tracksRouter)
 
 // api authentication test
 const authenticationStatus = await authTest()
+
+// const testTrack = await getTrack('4aawyAB9vmqN3uQ7FjRGTy')
+
+// var sampleTrack = new Track({
+//     ObjectId: mongoose.Types.ObjectId(),
+//     spotify: testTrack,
+// })
+// sampleTrack.save(function (err, sampleTrack) {
+//     if (err) return console.error(err)
+//     console.log('track "' + sampleTrack.spotify.name + '" saved to collection.')
+// })
+
+const testPlaylistTracks = await getPlaylistTracks(
+    '5NOIhb4nrzrw15skiTKYEF?si=44dfb0a0b36a42e8'
+)
+
+testPlaylistTracks.forEach(async (track) => {
+    var track = new Track({
+        ObjectId: mongoose.Types.ObjectId(),
+        spotify: track,
+    })
+    await track.save(function (err, track) {
+        if (err) return console.error(err)
+        console.log('track "' + track.spotify.name + '" saved to collection.')
+    })
+})
+
+
+
 
 // get sample movie poster
 const testImage = await getTestPoster(1396)

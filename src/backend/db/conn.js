@@ -1,11 +1,10 @@
 import mongoose from 'mongoose'
 
-
 export const connectToMongoDB = async () => {
     const uri =
         'mongodb+srv://markmaci:' +
         process.env.MONGO_DB_PASSWORD +
-        '@pictledb.gnokgad.mongodb.net/?retryWrites=true&w=majority'
+        '@pictledb.gnokgad.mongodb.net/pictle?retryWrites=true&w=majority'
     mongoose
         .connect(uri, {
             useNewUrlParser: true,
@@ -19,4 +18,3 @@ export const connectToMongoDB = async () => {
     db.on('error', (error) => console.log(error))
     return db
 }
-

@@ -23,8 +23,9 @@ export const getSpotifyAuth = async () => {
     }
 }
 
-export const getTestTrack = async (trackID) => {
+export const getTrack = async (trackID) => {
     const spotifyToken = await getSpotifyAuth()
+    console.log('spotifyToken: ' + spotifyToken)
 
     const apiURL = `https://api.spotify.com/v1/albums/${trackID}`
     try {
@@ -35,8 +36,35 @@ export const getTestTrack = async (trackID) => {
                 Host: 'api.spotify.com',
             },
         })
-        console.log('url from spotify ' + response.data.images[0].url)
-        return response.data.images[0].url.toString()
+        const size = Buffer.byteLength(JSON.stringify(response.data))
+        console.log('Size of /tracks response: ' + size + ' bytes')
+        return response.data
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const getPlaylistTracks = async (playlistID) => {
+    const spotifyToken = await getSpotifyAuth()
+    var tracks = []
+
+    const apiURL = `https://api.spotify.com/v1/playlists/${playlistID}/tracks`
+    try {
+        const response = await axios.get(apiURL, {
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${spotifyToken}`,
+                Host: 'api.spotify.com',
+            },
+        })
+        const size = Buffer.byteLength(JSON.stringify(response.data))
+        console.log('Size of /playlists response: ' + size + ' bytes')
+
+        response.data.tracks.items.forEach((track) => {
+            tracks.push(track.track)
+        })
+
+        return tracks
     } catch (error) {
         console.log(error)
     }
