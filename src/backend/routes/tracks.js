@@ -2,7 +2,6 @@ import express from 'express'
 import { Track } from '../db/models/Track.js'
 export const tracksRouter = express.Router()
 
-// getting all
 tracksRouter.get('/', async (req, res) => {
     try {
         const tracks = await Track.find()
@@ -12,12 +11,10 @@ tracksRouter.get('/', async (req, res) => {
     }
 })
 
-// getting one
 tracksRouter.get('/:id', getTrack, (req, res) => {
     res.json(res.track)
 })
 
-// creating one
 tracksRouter.post('/', async (req, res) => {
     const track = new Track({
         ObjectId: req.body.ObjectId,
@@ -31,7 +28,6 @@ tracksRouter.post('/', async (req, res) => {
     }
 })
 
-// updating one
 tracksRouter.patch('/:id', getTrack, async (req, res) => {
     if (req.body.ObjectId != null) {
         res.track.ObjectId = req.body.ObjectId
@@ -47,7 +43,6 @@ tracksRouter.patch('/:id', getTrack, async (req, res) => {
     }
 })
 
-// deleting one
 tracksRouter.delete('/:id', getTrack, async (req, res) => {
     try {
         await res.track.remove()
@@ -57,7 +52,6 @@ tracksRouter.delete('/:id', getTrack, async (req, res) => {
     }
 })
 
-// middleware
 async function getTrack(req, res, next) {
     let track
     try {

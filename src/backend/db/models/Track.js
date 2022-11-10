@@ -262,6 +262,6 @@ const TrackSchema = new mongoose.Schema(
     { collection: 'tracks' }
 )
 
-TrackSchema.plugin(uniqueValidator, { message: 'is already taken.' })
+TrackSchema.plugin(uniqueValidator, { message: '{TYPE} of {VALUE} is already taken, expected {PATH} to be unique.' })
 
 export const Track = mongoose.model('track', TrackSchema)

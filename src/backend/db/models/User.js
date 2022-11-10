@@ -47,6 +47,6 @@ const UserSchema = new mongoose.Schema(
     { collection: 'users' }
 )
 
-UserSchema.plugin(uniqueValidator, { message: 'is already taken.' })
+UserSchema.plugin(uniqueValidator, { message: '{TYPE} of {VALUE} is already taken, expected {PATH} to be unique.' })
 
 export const User = mongoose.model('user', UserSchema)

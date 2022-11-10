@@ -2,7 +2,6 @@ import express from 'express'
 import { User } from '../db/models/User.js'
 export const usersRouter = express.Router()
 
-// getting all
 usersRouter.get('/', async (req, res) => {
     try {
         const users = await User.find()
@@ -12,12 +11,10 @@ usersRouter.get('/', async (req, res) => {
     }
 })
 
-// getting one
 usersRouter.get('/:id', getUser, (req, res) => {
     res.json(res.user)
 })
 
-// creating one
 usersRouter.post('/', async (req, res) => {
     const user = new User({
         ObjectId: req.body.ObjectId,
@@ -32,9 +29,8 @@ usersRouter.post('/', async (req, res) => {
     } catch (err) {
         res.status(400).json({ message: err.message })
     }
-})  
+})
 
-// updating one
 usersRouter.patch('/:id', getUser, async (req, res) => {
     if (req.body.ObjectId != null) {
         res.user.ObjectId = req.body.ObjectId
@@ -53,7 +49,6 @@ usersRouter.patch('/:id', getUser, async (req, res) => {
     }
 })
 
-// deleting one
 usersRouter.delete('/:id', getUser, async (req, res) => {
     try {
         await res.user.remove()
@@ -63,7 +58,6 @@ usersRouter.delete('/:id', getUser, async (req, res) => {
     }
 })
 
-// middleware
 async function getUser(req, res, next) {
     let user
     try {

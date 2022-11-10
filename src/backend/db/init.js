@@ -1,50 +1,53 @@
+import mongoose from 'mongoose'
 import { User } from './models/User.js'
 import { Track } from './models/Track.js'
-import mongoose from 'mongoose'
-import crypto from 'crypto'
-import { getSpotifyAuth, getTrack } from '../api/spotify.js'
+import { Game } from './models/Game.js'
+import { getPlaylistTracks } from '../api/spotify.js'
+import { getPopularGames, getGameCover } from '../api/igdb.js'
 
-
-
-export const users = async () => {
-    var usersCollection = User.createCollection().then(function (collection) {
-        console.log('Users Collection created')
-    })
-    var sampleUser = new User({
+export async function initializeDB() {
+    // create a new user
+    const testUser = new User({
         ObjectId: mongoose.Types.ObjectId(),
-        username: 'bobsmith',
-        email: 'bobsmith@gmail.com',
-        password: 'password',
+        username: 'sampleuser',
+        email: 'sampleuser@gmail.com',
+        password: 'samplepassword',
     })
-
-    sampleUser.save(function (err, sampleUser) {
+    await testUser.save(function (err, user) {
         if (err) return console.error(err)
-        console.log('User ' + sampleUser.username + ' saved to collection.')
+        console.log('User ' + user.username + ' saved to collection.')
     })
-    return usersCollection
-}
 
-// export const tracks = async () => {
-//     var tracksCollection = Track.createCollection().then(function (collection) {
-//         console.log('Tracks Collection created')
-//     })
-//     var sampleSpotify= await getTestTrack('7ez8WRX4sGhKHZryJPJCNg?si=iRs1mf4JQQifyVOLghUnEA')
-//     var jsonSpotify = JSON.stringify(sampleSpotify)
-//     var sampleTrack = new Track({
-//         ObjectId: mongoose.Types.ObjectId(),
-//         spotify: sampleSpotify.data,
-//     })
-//     console.log(JSON.stringify(sampleTrack))
-    
-//     // tracksCollection.insertOne(sampleTrack, function (err, sampleTrack) {
-//     //     if (err) re  turn console.error(err)
-//     //     console.log('Track ' + sampleTrack.name + ' saved to collection.')
-//     // })
-//     // sampleTrack.save(function (err, sampleSpotify) 
-//     // {
-//     //     if (err) return console.error(err)
-//     //     console.log('Track ' + sampleTrack.name + ' saved to collection.')
-//     // }
-//     // )
-//     return tracksCollection
-// }
+    // create tracks
+    const testPlaylist = await getPlaylistTracks(
+        '5NOIhb4nrzrw15skiTKYEF?si=44dfb0a0b36a42e8'
+    )
+
+    testPlaylist.forEach(async (track) => {
+        var track = new Track({
+            ObjectId: mongoose.Types.ObjectId(),
+            spotify: track,
+        })
+        await track.save(function (err, track) {
+            if (err) return console.error(err)
+            console.log(
+                'track "' + track.spotify.name + '" saved to collection.'
+            )
+        })
+    })
+
+    // create games
+    const popularGames = await getPopularGames()
+
+    popularGames.forEach(async (popularGame) => {
+        var game = new Game({
+            ObjectId: mongoose.Types.ObjectId(),
+            igdb: popularGame,
+            cover: await getGameCover(popularGame.id),
+        })
+        await game.save(function (err, game) {
+            if (err) return console.error(err)
+            console.log('game "' + game.igdb.name + '" saved to collection.')
+        })
+    })
+}
