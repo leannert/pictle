@@ -14,6 +14,7 @@ import Menu from '@mui/material/Menu';
 import Button from '@mui/material/Button'
 import Modal from '@mui/material/Modal'
 const pages = ['Leaderboard', 'Account', 'Settings'];
+//new changes
 
 const style = {
   position: 'absolute',
@@ -98,7 +99,6 @@ export default function MenuAppBar() {
                         </Box>
                   </Modal>
               </Box>
-
             </div>
           )}
         </Toolbar>
