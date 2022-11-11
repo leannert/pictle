@@ -7,6 +7,7 @@ import { initializeDB } from './db/init.js'
 import { usersRouter } from './routes/users.js'
 import { tracksRouter } from './routes/tracks.js'
 import { gamesRouter } from './routes/games.js'
+import { getLogo } from './api/clearbit.js'
 import mongoose from 'mongoose'
 
 let server = express()
