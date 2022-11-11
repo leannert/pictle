@@ -11,6 +11,15 @@ gamesRouter.get('/', async (req, res) => {
     }
 })
 
+gamesRouter.get('/random', async (req, res) => {
+    try {
+        const randomGame = await Game.aggregate([{ $sample: { size: 1 } }])
+        res.json(randomGame)
+    } catch (err) {
+        res.status(500).json({ message: err.message })
+    }
+})
+
 gamesRouter.get('/:id', getGame, (req, res) => {
     res.json(res.game)
 })

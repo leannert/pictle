@@ -7,7 +7,6 @@ import { initializeDB } from './db/init.js'
 import { usersRouter } from './routes/users.js'
 import { tracksRouter } from './routes/tracks.js'
 import { gamesRouter } from './routes/games.js'
-import mongoose from 'mongoose'
 
 let server = express()
 const PORT = process.env.PORT || 8000
@@ -35,7 +34,7 @@ server.use('/games', gamesRouter)
 // get sample movie poster
 const testImage = await getTestPoster(1396)
 
-// send poster to frontend
+// send test poster to frontend
 server.get('/dev/testimage', (req, res) => {
     res.status(200).send({ testImage })
 })

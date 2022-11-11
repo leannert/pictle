@@ -11,6 +11,15 @@ usersRouter.get('/', async (req, res) => {
     }
 })
 
+usersRouter.get('/random', async (req, res) => {
+    try {
+        const randomUser = await User.aggregate([{ $sample: { size: 1 } }])
+        res.json(randomUser)
+    } catch (err) {
+        res.status(500).json({ message: err.message })
+    }
+})
+
 usersRouter.get('/:id', getUser, (req, res) => {
     res.json(res.user)
 })
