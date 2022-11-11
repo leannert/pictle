@@ -1,0 +1,40 @@
+GET http://localhost:8000/users
+
+###
+
+GET http://localhost:8000/users/636b0500bed880af884e1c53
+
+###
+
+POST http://localhost:8000/users
+Content-Type: application/json
+
+{
+    "username": "johndoe",
+    "password": "2342435",
+    "email": "deez@test.com"
+}
+
+###
+
+DELETE http://localhost:8000/users/636b0500bed880af884e1c53
+
+### 
+
+PATCH http://localhost:8000/users/636b099207b55f3b04782b4a
+Content-Type: application/json
+
+{
+    "username": "obitoppin",
+    "password": "rjbarett",
+    "email": "deuce@gmail.com"
+}
+
+###
+
+GET http://localhost:8000/tracks/636d267f3afe2ac0f35cd3b8
+
+
+###
+
+GET http://localhost:8000/games/636d581078ea789a7d1f97c3
