@@ -8,7 +8,7 @@ export const getLogo = async (domain) => {
         method: 'get',
         url: 'https://logo.clearbit.com/' + domain + '?format=jpg',
         headers: {
-          'sk_7a5352c264a90580c1ad91b4b0b6221e': ''
+          '': ''
         }
       };
 
