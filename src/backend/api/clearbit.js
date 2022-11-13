@@ -1,15 +1,14 @@
 import axios from 'axios'
+import { response } from 'express';
 
-const domain_list = ['nike.com', 'uber.com', 'ubereats.com', 'lyft.com', 'apple.com', 'samsung.com', 'lg.com', 'twitter.com', 'facebook.com', 'instagram.com']
+const domain_list = ['nike', 'uber', 'ubereats', 'lyft', 'apple', 'samsung', 'lg', 'twitter', 'facebook', 'instagram', 'toyota', 'spotify', 'razer', 'starbucks', 'bestbuy', 'disney', 'yamaha', 'android', 'microsoft', 'google']
 
 export const getLogo = async (domain) => {
     try {
       var config = {
         method: 'get',
-        url: 'https://logo.clearbit.com/' + domain + '?format=jpg',
-        headers: {
-          '': ''
-        }
+        url: 'https://logo.clearbit.com/' + domain + '.com?format=jpg',
+        headers: { }
       };
 
       axios(config)
@@ -21,27 +20,25 @@ export const getLogo = async (domain) => {
         });
     }
     catch {
-
+      console.log(error)
     }
+
+    return response.data
   
   };
+
+export const getName = async (domain) => {
+  try {
+    return domain
+  }
+  catch{
+    console.log(error)
+  }
+}
 
 
 
 for (let i = 0; i < domain_list.length; i++) {
-  var config = {
-    method: 'get',
-    url: 'https://logo.clearbit.com/' + domain_list[i],
-    headers: {
-      'sk_7a5352c264a90580c1ad91b4b0b6221e': ''
-    }
-  };
-
-  axios(config)
-    .then(function (response) {
-      console.log(JSON.stringify(response.data));
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
+  getLogo(domain_list[i])
+  getName(domain_list)
 }
