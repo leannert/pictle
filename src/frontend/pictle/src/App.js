@@ -3,6 +3,7 @@ import './App.css'
 import axios from './axios'
 import MenuAppBar from './components/MenuAppBar'
 import {Grid, Button, Box, Typography } from "@mui/material"
+import Board from './components/board'
 
 function App() {
     const [result, setResult] = useState('')
@@ -25,17 +26,24 @@ function App() {
 
     return (
         
-            <>
-                <MenuAppBar />
-                {/* <h1>{result}</h1> */}
-                <Grid 
-                direction='column' 
+            <><>
+            <MenuAppBar />
+            {/* <h1>{result}</h1> */}
+            <Grid
+                direction='column'
                 alignItems={'center'}
                 justifySelf="center">
 
-                    <img src={testImage} alt="testImage" width={200} />
-                </Grid>
-            </>
+                <img src={testImage} alt="testImage" width={200} />
+            </Grid>
+        </>
+        {/* leaderboard */}
+        <>
+                <div className='App'>
+                    <Board></Board>
+                </div>
+        </></>
+                
         
     )
 }
