@@ -21,9 +21,9 @@ function item(data) {
         //                 <div className="info">
         //                 <span className="rank">1</span>
         //                 <span>. </span>
-        //                 <span className="name">user_name</span>
+        //                 <span className="name">{value.username}</span>
         //                 <span>: </span>
-        //                 <span>score</span>
+        //                 <span>{value.score}</span>
         //                 </div>
         //             </div>
         //         </div>
