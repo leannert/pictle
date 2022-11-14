@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { StyleSheet, View, SafeAreaView } from "react-native"
+import ReactDOM from 'react-dom'
 import './App.css'
+import Wordle from './components/Wordle'
 import axios from './axios'
 
 function App() {
@@ -17,6 +19,14 @@ function App() {
         })
     }, [])
 
+    const [solution, setSolution] = useState(null)
+    useEffect(() => {
+     
+            setSolution("Words")
+          
+      }, [setSolution])
+    
+
     return (
         result && (
             <>
@@ -24,46 +34,15 @@ function App() {
                 <img src={"https:"+testImage} alt="testImage" />
             </>
         ) && (
-            <SafeAreaView>
-                <View>
-                <GuessRow />
-                <GuessRow />
-                <GuessRow />
-                <GuessRow />
-                <GuessRow />
-                <GuessRow />
-                </View>
-            </SafeAreaView>
-        )
+            <div className="App">
+              <h1>Wordle (Lingo)</h1>
+              {solution && <Wordle solution={solution} />}
+            </div>
+          )
     )
 }
 
-const GuessRow = () => (
-    <View style={styles.guessRow}>
-      <View style={styles.guessSquare}></View>
-      <View style={styles.guessSquare}></View>
-      <View style={styles.guessSquare}></View>
-      <View style={styles.guessSquare}></View>
-      <View style={styles.guessSquare}></View>
-    </View>
-  )
+
+  export default App
 
 
-const styles = StyleSheet.create({
-    guessRow: {
-      flexDirection: "row",
-      justifyContent: "center",
-    },
-    guessSquare: {
-      borderColor: "#d3d6da",
-      borderWidth: 2,
-      width: 50,
-      height: 50,
-      alignItems: "center",
-      justifyContent: "center",
-      margin: 5,
-    },
-  })
-  
-
-export default App
