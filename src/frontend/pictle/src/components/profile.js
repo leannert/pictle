@@ -15,7 +15,7 @@ function item(data) {
         // Also for different game categories, the way of parsing the score might different(?).
         // <>
         // {
-        //     data.map((value, index) => {
+        //     data.map((value, index) => (
         //         <div className="flex">
         //             <div className="item">
         //                 <div className="info">
@@ -27,7 +27,8 @@ function item(data) {
         //                 </div>
         //             </div>
         //         </div>
-        //     })
+        //          )
+        //      )
         // }
         // </>
 
