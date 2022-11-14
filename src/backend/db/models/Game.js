@@ -3,11 +3,10 @@ import uniqueValidator from 'mongoose-unique-validator'
 
 const GameSchema = new mongoose.Schema(
     {
-        ObjectId: {
+        _id: {
             type: mongoose.Types.ObjectId,
             required: [true, "can't be blank"],
             default: mongoose.Types.ObjectId(),
-            unique: true,
         },
         igdb: {
             type: Object,
