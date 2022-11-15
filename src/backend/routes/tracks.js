@@ -11,6 +11,16 @@ tracksRouter.get('/', async (req, res) => {
     }
 })
 
+tracksRouter.get('/random', async (req, res) => {
+    try {
+        const randomTrack = await Track.aggregate([{ $sample: { size: 1 } }])
+        res.json(randomTrack)
+    } catch (err) {
+        res.status(500).json({ message: err.message })
+    }
+})
+
+
 tracksRouter.get('/:id', getTrack, (req, res) => {
     res.json(res.track)
 })

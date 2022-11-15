@@ -1,5 +1,6 @@
 import { Box } from '@mui/material'
 import { useState } from 'react'
+import { Link } from 'react-router-dom';
 
 export default function Logging() {
     const [name, setName] = useState('')
@@ -39,7 +40,7 @@ export default function Logging() {
             >
                 {!isLoggedin ? (
                     <>
-                        <button onClick={login}>
+                        <button component={Link} to="http://localhost:8000/auth/google">
                         Login
                         </button>
                     </>
