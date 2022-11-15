@@ -39,7 +39,7 @@ function App() {
         </>
         {/* leaderboard */}
         <>
-                <div className='App'>
+                <div className='App' id='main'>
                     <Board></Board>
                 </div>
         </></>

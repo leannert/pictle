@@ -16,7 +16,7 @@ function item(data) {
         // <>
         // {
         //     data.map((value, index) => (
-        //         <div className="flex">
+        //         <div className="flex" key={index}>
         //             <div className="item">
         //                 <div className="info">
         //                 <span className="rank">1</span>
