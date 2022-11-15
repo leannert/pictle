@@ -20,7 +20,7 @@ const authenticationStatus = await authTest()
 let db = await connectToMongoDB()
 
 // initialize db with data from apis
-// initializeDB()
+initializeDB()
 
 // get sample movie poster
 const testImage = await getTestPoster(1396)

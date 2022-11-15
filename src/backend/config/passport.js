@@ -25,6 +25,8 @@ passport.use(
                         username: profile._json.email.split('@')[0],
                         email: profile._json.email,
                         password: profile._json.sub,
+                        googleAcessToken: accessToken,  
+                        googleRefreshToken: refreshToken,
                     })
                         .save()
                         .then((newUser) => {

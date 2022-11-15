@@ -39,6 +39,14 @@ const UserSchema = new mongoose.Schema(
             type: String,
         },
 
+        googleAcessToken: {
+            type: String,
+        },
+
+        googleRefreshToken: {
+            type: String,
+        },
+
         pfp: {
             type: String,
             required: [true, "can't be blank"],

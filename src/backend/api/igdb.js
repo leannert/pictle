@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { response } from 'express'
 
 export const getTwitchAuth = async () => {
     try {
@@ -31,6 +32,10 @@ export const getGameCover = async (gameID) => {
             },
             data: `fields animated,game,height,image_id,url,width; where game = ${gameID};`,
         })
+
+        if (response.status == 429) {
+            return undefined
+        }
 
         return response.data[0]
     } catch (error) {

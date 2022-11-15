@@ -8,7 +8,7 @@ import { getPopularGames, getGameCover } from '../api/igdb.js'
 export async function initializeDB() {
     // create a new user
     const testUser = new User({
-        ObjectId: mongoose.Types.ObjectId(),
+        _id: mongoose.Types.ObjectId(),
         username: 'sampleuser',
         email: 'sampleuser@gmail.com',
         password: 'samplepassword',
@@ -25,7 +25,7 @@ export async function initializeDB() {
 
     testPlaylist.forEach(async (track) => {
         var track = new Track({
-            ObjectId: mongoose.Types.ObjectId(),
+            _id: mongoose.Types.ObjectId(),
             spotify: track,
         })
         await track.save(function (err, track) {
@@ -38,16 +38,27 @@ export async function initializeDB() {
 
     // create games
     const popularGames = await getPopularGames()
+    var droppedGameRequests = 0
 
     popularGames.forEach(async (popularGame) => {
         var game = new Game({
-            ObjectId: mongoose.Types.ObjectId(),
+            _id: mongoose.Types.ObjectId(),
             igdb: popularGame,
             cover: await getGameCover(popularGame.id),
         })
-        await game.save(function (err, game) {
-            if (err) return console.error(err)
-            console.log('game "' + game.igdb.name + '" saved to collection.')
-        })
+
+        if (game.cover == undefined) {
+            console.log(
+                'Dropping game ' + game.igdb.name + ' due to rate limit.'
+            )
+            droppedGameRequests++
+            return
+        } else {
+            await game.save(function (err, game) {
+                if (err) return console.error(err)
+                console.log('game "' + game.igdb.name + '" saved to collection.')
+            })
+        }
     })
+    
 }

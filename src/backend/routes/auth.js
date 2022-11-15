@@ -12,6 +12,6 @@ googleAuthRouter.get(
     '/google/redirect',
     passport.authenticate('google'),
     (req, res) => {
-        res.send('you reached the callback uri')
+        res.redirect('http://localhost:3000')
     }
 )
