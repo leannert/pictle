@@ -1,19 +1,15 @@
 import * as React from 'react';
+import Login from './Login'
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
-import AccountCircle from '@mui/icons-material/AccountCircle';
-import Switch from '@mui/material/Switch';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import FormGroup from '@mui/material/FormGroup';
-import MenuItem from '@mui/material/MenuItem';
+
 import Menu from '@mui/material/Menu';
 import Button from '@mui/material/Button'
 import Modal from '@mui/material/Modal'
-const pages = ['Leaderboard', 'Account', 'Settings'];
 //new changes
 
 const style = {
@@ -21,8 +17,8 @@ const style = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  height: 600,
-  width: 600,
+  height: 400,
+  width: 300,
   bgcolor: 'background.paper',
   border: '2px solid #000',
   boxShadow: 24,
@@ -71,10 +67,19 @@ export default function MenuAppBar() {
           >
             <MenuIcon />
           </IconButton>
-          <Button variant="h6" component="div" sx={{ flexGrow: 1 , fontWeight: 900}}>
+          <Button variant="h3" 
+            sx={{ 
+              // flexGrow: 1 , 
+              fontWeight: 900, 
+              fontSize: 30,
+              maxBlockSize: 400,
+              maxWidth: 150,
+              display: 'flex',
+              margin: 'auto'
+              }}>
             PICTLE
           </Button>
-          {auth && (
+         
             <div>
               <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                 {/* {pages.map((page) => ( */}
@@ -92,15 +97,13 @@ export default function MenuAppBar() {
                         aria-labelledby="modal-modal-title"
                         aria-describedby="modal-modal-description"
                       >
-                        <Box sx={style}>
-                          <Button>
-                            Sign In
-                          </Button>
-                        </Box>
+                      <Box sx={style}>
+                        <Login/>
+                      </Box>
                   </Modal>
               </Box>
             </div>
-          )}
+          
         </Toolbar>
       </AppBar>
     </Box>
