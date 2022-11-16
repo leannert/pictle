@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react'
 import './App.css'
 import axios from './axios'
 import MenuAppBar from './components/MenuAppBar'
-import { ImagePixelated, ElementPixelated } from "react-pixelate"
-import GameImage from './components/GameImage'
+import GameImage from './components/Image'
+import CategoriesDrawer from './components/CategoriesDrawer'
 
 function App() {
     const [result, setResult] = useState('')
@@ -14,12 +14,13 @@ function App() {
         })
 
         axios.get('dev/testimage').then((response) => {
-            console.log(response.data.testImage)
+            // console.log(response.data.testImage)
+            // response.setHeader("Access-Control-Allow-Origin", "*");
             setTestImage(response.data.testImage)
         })
 
         axios.get('/users').then((response) => {
-            console.log(response.data)
+            // console.log(response.data)
         })
     }, [])
 
@@ -27,9 +28,10 @@ function App() {
         result && (
             <>
                 <MenuAppBar />
+                <CategoriesDrawer />
                 <h1>{result}</h1>
                 <img src={testImage} alt="testImage" width={250} />
-                <ImagePixelated src={testImage} width={250} height={400} pixelSize={4} fillTransparencyColor={"grey"} />
+
                 <GameImage />
             </>
         )

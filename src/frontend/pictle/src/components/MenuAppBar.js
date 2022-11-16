@@ -1,95 +1,102 @@
-import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
-import AccountCircle from '@mui/icons-material/AccountCircle';
-import Switch from '@mui/material/Switch';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import FormGroup from '@mui/material/FormGroup';
-import MenuItem from '@mui/material/MenuItem';
-import Menu from '@mui/material/Menu';
+import * as React from 'react'
+import AppBar from '@mui/material/AppBar'
+import Box from '@mui/material/Box'
+import Toolbar from '@mui/material/Toolbar'
+import Typography from '@mui/material/Typography'
+import IconButton from '@mui/material/IconButton'
+import MenuIcon from '@mui/icons-material/Menu'
+import BarChartIcon from '@mui/icons-material/BarChart'
+import InfoIcon from '@mui/icons-material/Info'
+import { Avatar } from '@mui/material'
+import CategoriesDrawer from './CategoriesDrawer'
+import ProfileDrawer from './ProfileDrawer'
 
-export default function MenuAppBar() {
-  const [auth, setAuth] = React.useState(true);
-  const [anchorEl, setAnchorEl] = React.useState(null);
+const MenuAppBar = (props) => {
+    const [isCategoriesDrawerOpen, setIsCategoriesDrawerOpen] =
+        React.useState(false)
+    const [isUserDrawerOpen, setIsUserDrawerOpen] = React.useState(false)
+    const [userAvatar, setUserAvatar] = React.useState(null)
 
-  const handleChange = (event) => {
-    setAuth(event.target.checked);
-  };
+    return (
+        <>
+            <Box sx={{ flexGrow: 1 }}>
+                <AppBar position="relative" style={{ zIndex: 24 }}>
+                    <Toolbar>
+                        <IconButton
+                            size="large"
+                            edge="start"
+                            color="inherit"
+                            aria-label="menu"
+                            sx={{ mr: 2 }}
+                            onClick={() => {
+                                setIsCategoriesDrawerOpen(
+                                    (isDrawerOpen) => !isDrawerOpen
+                                )
+                            }}
+                        >
+                            <MenuIcon fontSize="large" />
+                        </IconButton>
+                        <Typography
+                            variant="h4"
+                            component="div"
+                            align="center"
+                            sx={{ flexGrow: 1 , marginLeft: 20}}
+                        >
+                            Pictle
+                        </Typography>
+                        <IconButton
+                            size="large"
+                            edge="end"
+                            color="inherit"
+                            aria-label="menu"
+                            sx={{ mr: 2 }}
+                        >
+                            <InfoIcon fontSize="large" />
+                        </IconButton>
+                        <IconButton
+                            size="large"
+                            edge="end"
+                            color="inherit"
+                            aria-label="menu"
+                            sx={{ mr: 2 }}
+                        >
+                            <BarChartIcon fontSize="large" />
+                        </IconButton>
 
-  const handleMenu = (event) => {
-    setAnchorEl(event.currentTarget);
-      };
+                        <IconButton
+                            size="large"
+                            edge="end"
+                            color="inherit"
+                            aria-label="menu"
+                            sx={{ mr: 2 }}
+                            onClick={() => {
+                                setIsUserDrawerOpen((isDrawerOpen) => !isDrawerOpen)
+                            }}
+                        >
+                            <Avatar
+                                sx={{ background: 'white' }}
+                                alt="avatar"
+                                src="https://avatars.dicebear.com/api/pixel-art/+dfe332a.svg"
+                            />
+                        </IconButton>
+                    </Toolbar>
+                </AppBar>
+                <CategoriesDrawer
+                    open={isCategoriesDrawerOpen}
+                    onClose={() => {
+                        setIsCategoriesDrawerOpen(false)
+                    }}
+                ></CategoriesDrawer>
+                <ProfileDrawer
+                    open={isUserDrawerOpen}
+                    onClose={() => {
+                        setIsUserDrawerOpen(false)
+                    }}
 
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-
-  return (
-    <Box sx={{ flexGrow: 1 }}>
-      {/* <FormGroup>
-        <FormControlLabel
-          control={
-            <Switch
-              checked={auth}
-              onChange={handleChange}
-              aria-label="login switch"
-            />
-          }
-          label={auth ? 'Logout' : 'Login'}
-        />
-      </FormGroup> */}
-      <AppBar position="static">
-        <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            sx={{ mr: 2 }}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Photos
-          </Typography>
-          {auth && (
-            <div>
-              <IconButton
-                size="large"
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                onClick={handleMenu}
-                color="inherit"
-              >
-                <AccountCircle />
-              </IconButton>
-              <Menu
-                id="menu-appbar"
-                anchorEl={anchorEl}
-                anchorOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                open={Boolean(anchorEl)}
-                onClose={handleClose}
-              >
-                <MenuItem onClick={handleClose}>Profile</MenuItem>
-                <MenuItem onClick={handleClose}>My account</MenuItem>
-              </Menu>
-            </div>
-          )}
-        </Toolbar>
-      </AppBar>
-    </Box>
-  );
+                ></ProfileDrawer>
+            </Box>
+        </>
+    )
 }
+
+export default MenuAppBar

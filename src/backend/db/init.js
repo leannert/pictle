@@ -60,5 +60,4 @@ export async function initializeDB() {
             })
         }
     })
-    
 }

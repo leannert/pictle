@@ -29,6 +29,7 @@ export const getGameCover = async (gameID) => {
                 Accept: 'application/json',
                 'Client-ID': process.env.TWITCH_CLIENT_ID,
                 Authorization: 'Bearer ' + twitchToken,
+                'Cross-Origin-Resource-Policy': 'cross-origin',
             },
             data: `fields animated,game,height,image_id,url,width; where game = ${gameID};`,
         })

@@ -27,6 +27,7 @@ const testImage = await getTestPoster(1396)
 
 // send test poster to frontend
 server.get('/dev/testimage', (req, res) => {
+    res.setHeader("Access-Control-Allow-Origin", "*");
     res.status(200).send({ testImage })
 })
 
