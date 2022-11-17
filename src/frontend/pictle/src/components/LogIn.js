@@ -63,6 +63,7 @@ const LogIn = (props) => {
                             height: 70,
                             background: 'white',
                             border: '1.5px solid black',
+                            marginTop: 1,
                         }}
                         alt="avatar"
                         src="https://avatars.dicebear.com/api/pixel-art/+dfe334322122124566532a.svg"
@@ -73,7 +74,8 @@ const LogIn = (props) => {
                     <Button
                         sx={{
                             width: 350,
-                            height: 60
+                            height: 60,
+                            marginTop: 2,
                         }}
                         href="http://localhost:8000/auth/google"
                         >
@@ -87,7 +89,7 @@ const LogIn = (props) => {
                     >
                         <TextField
                             margin="normal"
-                            required
+                            // required
                             fullWidth
                             id="email"
                             label="Email Address"
@@ -97,7 +99,7 @@ const LogIn = (props) => {
                         />
                         <TextField
                             margin="normal"
-                            required
+                            // required
                             fullWidth
                             name="password"
                             label="Password"
@@ -119,18 +121,6 @@ const LogIn = (props) => {
                         >
                             Sign In
                         </Button>
-                        <Grid container>
-                            <Grid item xs>
-                                <Link href="#" variant="body2">
-                                    Forgot password?
-                                </Link>
-                            </Grid>
-                            <Grid item>
-                                <Link href="#" variant="body2">
-                                    {"Don't have an account? Sign Up"}
-                                </Link>
-                            </Grid>
-                        </Grid>
                     </Box>
                 </Box>
                 <Copyright sx={{ mt: 8, mb: 4 }} />

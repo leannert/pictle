@@ -2,8 +2,11 @@ import React, { useEffect, useState } from 'react'
 import './App.css'
 import axios from './axios'
 import MenuAppBar from './components/MenuAppBar'
-import GameImage from './components/Image'
+import Game from './components/Game'
 import CategoriesDrawer from './components/CategoriesDrawer'
+import Box from '@mui/material/Box'
+import Grid from '@mui/material/Grid'
+import { Container } from '@mui/system'
 
 function App() {
     const [result, setResult] = useState('')
@@ -29,10 +32,12 @@ function App() {
             <>
                 <MenuAppBar />
                 <CategoriesDrawer />
-                <h1>{result}</h1>
-                <img src={testImage} alt="testImage" width={250} />
 
-                <GameImage />
+                <Container
+                sx={{marginTop: 6, marginLeft: 62}}
+                maxWidth='sm'>
+                    <Game />
+                </Container>
             </>
         )
     )

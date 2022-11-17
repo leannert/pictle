@@ -15,7 +15,7 @@ const MenuAppBar = (props) => {
     const [isCategoriesDrawerOpen, setIsCategoriesDrawerOpen] =
         React.useState(false)
     const [isUserDrawerOpen, setIsUserDrawerOpen] = React.useState(false)
-    const [userAvatar, setUserAvatar] = React.useState(null)
+    // const [userAvatar, setUserAvatar] = React.useState(null)
 
     return (
         <>

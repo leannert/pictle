@@ -8,10 +8,13 @@ import { ImagePixelated, ElementPixelated } from 'react-pixelate'
 export default function Game() {
     return (
         <>
-            <Container maxWidth="sm">
-                <Box sx={{ bgcolor: '#cfe8fc', height: '100vh', border: 20 }} />
-                <Image />
-            </Container>
+
+               <Box
+               justifyContent={'center'}>
+               <Image />
+               </Box>
+                
+
         </>
     )
 }
