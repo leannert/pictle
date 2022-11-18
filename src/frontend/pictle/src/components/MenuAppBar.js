@@ -40,7 +40,7 @@ const MenuAppBar = (props) => {
                             variant="h4"
                             component="div"
                             align="center"
-                            sx={{ flexGrow: 1 , marginLeft: 20}}
+                            sx={{ flexGrow: 1, marginLeft: 20 }}
                         >
                             Pictle
                         </Typography>
@@ -70,7 +70,9 @@ const MenuAppBar = (props) => {
                             aria-label="menu"
                             sx={{ mr: 2 }}
                             onClick={() => {
-                                setIsUserDrawerOpen((isDrawerOpen) => !isDrawerOpen)
+                                setIsUserDrawerOpen(
+                                    (isDrawerOpen) => !isDrawerOpen
+                                )
                             }}
                         >
                             <Avatar
@@ -92,7 +94,6 @@ const MenuAppBar = (props) => {
                     onClose={() => {
                         setIsUserDrawerOpen(false)
                     }}
-
                 ></ProfileDrawer>
             </Box>
         </>

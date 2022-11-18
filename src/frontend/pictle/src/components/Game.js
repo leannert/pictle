@@ -10,7 +10,7 @@ export default function Game() {
         <>
 
                <Box
-               justifyContent={'center'}>
+               >
                <Image />
                </Box>
                 

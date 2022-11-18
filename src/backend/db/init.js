@@ -20,7 +20,7 @@ export async function initializeDB() {
 
     // create tracks
     const testPlaylist = await getPlaylistTracks(
-        '5NOIhb4nrzrw15skiTKYEF?si=44dfb0a0b36a42e8'
+        '5oB1tNVDWdXPqUU3gDBMrR?si=a1c7d99d20f34f0a'
     )
 
     testPlaylist.forEach(async (track) => {

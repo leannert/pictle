@@ -11,7 +11,6 @@ import SportsEsportsIcon from '@mui/icons-material/SportsEsports'
 import MovieIcon from '@mui/icons-material/Movie'
 
 const CategoriesDrawer = (props) => {
-
     const list = (anchor) => (
         <Box
             sx={{
@@ -24,23 +23,23 @@ const CategoriesDrawer = (props) => {
                 <ListItem>
                     <ListItemButton>
                         <ListItemIcon>
-                            <LibraryMusicIcon />
+                            <LibraryMusicIcon fontSize="large" />
                         </ListItemIcon>
                         <ListItemText primary="Album Art" />
                     </ListItemButton>
                 </ListItem>
                 <ListItem>
-                    <ListItemButton>
+                    <ListItemButton onClick={() => {}}>
                         <ListItemIcon>
-                            <SportsEsportsIcon />
+                            <SportsEsportsIcon fontSize="large" />
                         </ListItemIcon>
                         <ListItemText primary="Video Game Covers" />
                     </ListItemButton>
                 </ListItem>
                 <ListItem>
-                    <ListItemButton>
+                    <ListItemButton onClick={() => {}}>
                         <ListItemIcon>
-                            <MovieIcon />
+                            <MovieIcon fontSize="large" />
                         </ListItemIcon>
                         <ListItemText primary="Movie Posters" />
                     </ListItemButton>
@@ -62,7 +61,6 @@ const CategoriesDrawer = (props) => {
                 }}
                 BackdropProps={{ invisible: true }}
                 onClose={props.onClose}
-                
             >
                 {list('left')}
             </Drawer>
