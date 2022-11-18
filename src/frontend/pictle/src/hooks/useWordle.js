@@ -70,8 +70,8 @@ const useWordle = ( solution) => {
         console.log('you already tried that word.')
         return
       }
-      // check word is 5 chars
-      if (currentGuess.length !== 5) {
+      // check word is length of solution
+      if (currentGuess.length !== solution.length) {
         console.log('word must be 5 chars.')
         return
       }
@@ -83,13 +83,13 @@ const useWordle = ( solution) => {
       return
     }
     if (/^[A-Za-z]$/.test(key)) {
-      if (currentGuess.length < 5) {
+      if (currentGuess.length < solution.length) {
         setCurrentGuess(prev => prev + key)
       }
     }
   }
 
-  return {turn, currentGuess, guesses, isCorrect, solution, handleKeyup}
+  return {turn, currentGuess, guesses, isCorrect, handleKeyup}
 }
 
 export default useWordle

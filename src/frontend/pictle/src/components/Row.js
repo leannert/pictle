@@ -22,7 +22,7 @@ export default function Row({ guess, currentGuess, solution }) {
         {letters.map((letter, i) => (
           <div key={i} className="filled">{letter}</div>
         ))}
-        {[...Array(5 - letters.length)].map((_,i) => (
+        {[...Array(solution.length - letters.length)].map((_,i) => (
           <div key={i}></div>
         ))}
       </div>
