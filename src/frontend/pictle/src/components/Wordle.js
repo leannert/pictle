@@ -21,7 +21,7 @@ export default function Wordle({ solution }) {
     <div>
       <div>solution - {solution}</div>
       <div>Current Guess - {currentGuess}</div>
-      <Grid guesses={guesses} currentGuess={currentGuess} turn={turn} />
+      <Grid guesses={guesses} currentGuess={currentGuess} turn={turn} solution = {solution} />
     </div>
   )
 }

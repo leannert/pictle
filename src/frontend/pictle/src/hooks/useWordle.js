@@ -1,6 +1,7 @@
 import { useState } from 'react'
 
-const useWordle = (solution) => {
+
+const useWordle = ( solution) => {
   const [turn, setTurn] = useState(0) 
   const [currentGuess, setCurrentGuess] = useState('')
   const [guesses, setGuesses] = useState([...Array(6)]) // each guess is an array
@@ -88,7 +89,7 @@ const useWordle = (solution) => {
     }
   }
 
-  return {turn, currentGuess, guesses, isCorrect, handleKeyup}
+  return {turn, currentGuess, guesses, isCorrect, solution, handleKeyup}
 }
 
 export default useWordle

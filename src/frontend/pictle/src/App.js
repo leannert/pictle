@@ -19,13 +19,13 @@ function App() {
         })
     }, [])
 
-    const [solution, setSolution] = useState(null)
+
+    const [solution, setSolution] = useState('')
     useEffect(() => {
-     
-            setSolution("Words")
+            setSolution("Spiffin")
           
       }, [setSolution])
-    
+
 
     return (
         result && (
@@ -35,7 +35,6 @@ function App() {
             </>
         ) && (
             <div className="App">
-              <h1>Wordle (Lingo)</h1>
               {solution && <Wordle solution={solution} />}
             </div>
           )
@@ -44,5 +43,4 @@ function App() {
 
 
   export default App
-
-
+ 

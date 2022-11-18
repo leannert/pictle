@@ -1,6 +1,8 @@
 import React from 'react'
+// import solution from '../App'
 
-export default function Row({ guess, currentGuess }) {
+
+export default function Row({ guess, currentGuess, solution }) {
 
   if (guess) {
     return (
@@ -27,14 +29,16 @@ export default function Row({ guess, currentGuess }) {
     )
   }
 
-  return (
-    <div className="row">
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
-  )
   
+
+    return (
+        <div className="row">
+             {[...Array(solution.length)].map((_,i) => (
+                <div key={i}></div>
+            ))}
+
+        </div>
+    )    
+
+
 }
