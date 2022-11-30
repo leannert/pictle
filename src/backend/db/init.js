@@ -2,8 +2,10 @@ import mongoose from 'mongoose'
 import { User } from './models/User.js'
 import { Track } from './models/Track.js'
 import { Game } from './models/Game.js'
+import { Movie } from './models/Movie.js'
 import { getPlaylistTracks } from '../api/spotify.js'
 import { getPopularGames, getGameCover } from '../api/igdb.js'
+import { getTopMovies } from '../api/tmdb.js'
 
 export async function initializeDB() {
     // create a new user
@@ -19,11 +21,13 @@ export async function initializeDB() {
     })
 
     // create tracks
-    const testPlaylist = await getPlaylistTracks(
-        '5oB1tNVDWdXPqUU3gDBMrR?si=a1c7d99d20f34f0a'
+    const playlist = await getPlaylistTracks(
+        '5oB1tNVDWdXPqUU3gDBMrR?si=43543f1d530c440a'
     )
 
-    testPlaylist.forEach(async (track) => {
+    console.log('playlist items array length is ' + playlist.length)
+
+    playlist.forEach(async (track) => {
         var track = new Track({
             _id: mongoose.Types.ObjectId(),
             spotify: track,
@@ -56,8 +60,31 @@ export async function initializeDB() {
         } else {
             await game.save(function (err, game) {
                 if (err) return console.error(err)
-                console.log('game "' + game.igdb.name + '" saved to collection.')
+                console.log(
+                    'game "' + game.igdb.name + '" saved to collection.'
+                )
             })
         }
+    })
+
+    // create movies
+    var topMovies = []
+    for (let i = 1; i < 6; i++) {
+        const movies = await getTopMovies(i)
+        movies.forEach((movie) => {
+            topMovies.push(movie)
+        })
+    }
+
+    topMovies.forEach(async (movie) => {
+        var movie = new Movie({
+            _id: mongoose.Types.ObjectId(),
+            tmdb: movie,
+        })
+
+        await movie.save(function (err, movie) {
+            if (err) return console.error(err)
+            console.log('movie "' + movie.tmdb.title + '" saved to collection.')
+        })
     })
 }

@@ -84,6 +84,8 @@ const MenuAppBar = (props) => {
                     </Toolbar>
                 </AppBar>
                 <CategoriesDrawer
+                    gameMode={props.gameMode}
+                    setGameMode={props.setGameMode}
                     open={isCategoriesDrawerOpen}
                     onClose={() => {
                         setIsCategoriesDrawerOpen(false)

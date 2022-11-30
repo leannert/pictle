@@ -21,7 +21,11 @@ const CategoriesDrawer = (props) => {
         >
             <List>
                 <ListItem>
-                    <ListItemButton>
+                    <ListItemButton
+                        onClick={() => {
+                            props.setGameMode('tracks')
+                        }}
+                    >
                         <ListItemIcon>
                             <LibraryMusicIcon fontSize="large" />
                         </ListItemIcon>
@@ -29,7 +33,11 @@ const CategoriesDrawer = (props) => {
                     </ListItemButton>
                 </ListItem>
                 <ListItem>
-                    <ListItemButton onClick={() => {}}>
+                    <ListItemButton
+                        onClick={() => {
+                            props.setGameMode('games')
+                        }}
+                    >
                         <ListItemIcon>
                             <SportsEsportsIcon fontSize="large" />
                         </ListItemIcon>
@@ -37,7 +45,11 @@ const CategoriesDrawer = (props) => {
                     </ListItemButton>
                 </ListItem>
                 <ListItem>
-                    <ListItemButton onClick={() => {}}>
+                    <ListItemButton
+                        onClick={() => {
+                            props.setGameMode('movies')
+                        }}
+                    >
                         <ListItemIcon>
                             <MovieIcon fontSize="large" />
                         </ListItemIcon>

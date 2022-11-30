@@ -40,7 +40,9 @@ export const getGameCover = async (gameID) => {
 
         return response.data[0]
     } catch (error) {
-        console.log(error.response)
+        if (error.status == 429) {
+            // console.log(error.response)
+        }
     }
 }
 

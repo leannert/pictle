@@ -38,3 +38,7 @@ GET http://localhost:8000/tracks/636d267f3afe2ac0f35cd3b8
 ###
 
 GET http://localhost:8000/games/636d581078ea789a7d1f97c3
+
+###
+
+GET http://localhost:8000/movies/638302183c6e8cc3d1e274d7

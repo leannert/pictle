@@ -2,17 +2,15 @@ import React, { useEffect, useState } from 'react'
 import './App.css'
 import MenuAppBar from './components/MenuAppBar'
 import Game from './components/Game'
-import CategoriesDrawer from './components/CategoriesDrawer'
-import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'
-import { Container } from '@mui/system'
+
 
 function App() {
-    const [gameMode, setGameMode] = React.useState('')
+    const [gameMode, setGameMode] = useState('')
 
     return (
         <>
-            <MenuAppBar />
+            <MenuAppBar gameMode={gameMode} setGameMode={setGameMode} />
 
             <Grid container alignContent={'center'}>
                 <Grid
@@ -21,7 +19,7 @@ function App() {
                     justifyContent={'center'}
                     sx={{ marginTop: 6 }}
                 >
-                    <Game />
+                    <Game gameMode={gameMode} />
                 </Grid>
             </Grid>
         </>

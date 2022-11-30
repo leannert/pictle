@@ -5,6 +5,7 @@ import cors from 'cors'
 import { usersRouter } from '../routes/users.js'
 import { tracksRouter } from '../routes/tracks.js'
 import { gamesRouter } from '../routes/games.js'
+import { moviesRouter } from '../routes/movies.js'
 import { googleAuthRouter } from '../routes/auth.js'
 import './passport.js'
 
@@ -29,4 +30,5 @@ export function configureServer(server) {
     server.use('/users', usersRouter)
     server.use('/tracks', tracksRouter)
     server.use('/games', gamesRouter)
+    server.use('/movies', moviesRouter)
 }
