@@ -48,7 +48,7 @@ export const getPlaylistTracks = async (playlistID) => {
     const spotifyToken = await getSpotifyAuth()
     var tracks = []
 
-    const apiURL = `https://api.spotify.com/v1/playlists/${playlistID}/tracks`
+    const apiURL = `https://api.spotify.com/v1/playlists/${playlistID}/tracks?offset=100&limit=50`
     try {
         const response = await axios.get(apiURL, {
             headers: {
@@ -57,6 +57,7 @@ export const getPlaylistTracks = async (playlistID) => {
                 Host: 'api.spotify.com',
             },
         })
+        console.log('total tracks: ' + response.data.tracks.total)
         const size = Buffer.byteLength(JSON.stringify(response.data))
         console.log('Size of /playlists response: ' + size + ' bytes')
 

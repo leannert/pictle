@@ -6,7 +6,7 @@ const pfpSeed = crypto.randomBytes(64).toString('hex')
 
 const UserSchema = new mongoose.Schema(
     {
-        ObjectId: {
+        _id: {
             type: mongoose.Types.ObjectId,
             required: [true, "can't be blank"],
             default: mongoose.Types.ObjectId(),
@@ -34,6 +34,19 @@ const UserSchema = new mongoose.Schema(
             type: String,
             required: [true, "can't be blank"],
         },
+
+        googleId: {
+            type: String,
+        },
+
+        googleAcessToken: {
+            type: String,
+        },
+
+        googleRefreshToken: {
+            type: String,
+        },
+
         pfp: {
             type: String,
             required: [true, "can't be blank"],

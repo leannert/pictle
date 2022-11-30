@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { response } from 'express'
 
 export const getTwitchAuth = async () => {
     try {
@@ -28,13 +29,20 @@ export const getGameCover = async (gameID) => {
                 Accept: 'application/json',
                 'Client-ID': process.env.TWITCH_CLIENT_ID,
                 Authorization: 'Bearer ' + twitchToken,
+                'Cross-Origin-Resource-Policy': 'cross-origin',
             },
             data: `fields animated,game,height,image_id,url,width; where game = ${gameID};`,
         })
 
+        if (response.status == 429) {
+            return undefined
+        }
+
         return response.data[0]
     } catch (error) {
-        console.log(error.response)
+        if (error.status == 429) {
+            // console.log(error.response)
+        }
     }
 }
 
