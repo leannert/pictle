@@ -95,6 +95,7 @@ const MenuAppBar = (props) => {
 
                 ></CategoriesDrawer>
                 <ProfileDrawer
+                isAuthenticated={props.isAuthenticated} setIsAuthenticated={props.setIsAuthenticated}
                     open={isUserDrawerOpen}
                     onClose={() => {
                         setIsUserDrawerOpen(false)

@@ -18,7 +18,8 @@ const ProfileDrawer = (props) => {
                 }}
                 BackdropProps={{ invisible: true }}
             >
-                <LogIn />
+                <LogIn
+                isAuthenticated={props.isAuthenticated} setIsAuthenticated={props.setIsAuthenticated} />
             </Drawer>
         </>
     )

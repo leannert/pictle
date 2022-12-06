@@ -2,7 +2,7 @@ import mongoose from 'mongoose'
 
 export const connectToMongoDB = async () => {
     const uri =
-        'mongodb+srv://markmaci:' +
+        'mongodb+srv://isaac:' +
         process.env.MONGO_DB_PASSWORD +
         '@pictledb.gnokgad.mongodb.net/pictle?retryWrites=true&w=majority'
     mongoose

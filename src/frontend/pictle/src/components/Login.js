@@ -1,55 +1,45 @@
-import { Box } from '@mui/material'
-import { useState } from 'react'
-import { Link } from 'react-router-dom';
 
-export default function Logging() {
-    const [name, setName] = useState('')
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-    const [isLoggedin, setIsLoggedin] = useState(false)
+import { Button } from '@mui/material'
+import LoggedOut from './LoggedOut'
 
-    const login = (e) => {
-        e.preventDefault()
-        console.log(name, email, password)
-        const userData = {
-            name,
-            email,
-            password,
+const LogIn = (props) => {
+    const handleLogout = x => {
+        props.setIsAuthenticated(false)
+    }
+    const handleSuccessAuth = x => {
+        props.setIsAuthenticated(true)
+    }
+    const handleSubmit = (event) => {
+        event.preventDefault()
+        const data = new FormData(event.currentTarget)
+        handleSuccessAuth()
+        console.log({
+            email: data.get('email'),
+            password: data.get('password'),
+        })
+
+    }
+
+
+        if(!props.isAuthenticated)
+        {
+            return (
+                <LoggedOut
+                isAuthenticated={props.isAuthenticated} setIsAuthenticated={props.setIsAuthenticated} 
+                />
+                   )
         }
-        localStorage.setItem('token-info', JSON.stringify(userData))
-        setIsLoggedin(true)
-        setName('')
-        setEmail('')
-        setPassword('')
-    }
-
-    const logout = () => {
-        localStorage.removeItem('token-info')
-        setIsLoggedin(false)
-    }
-
-    return (
-        <>
-            <Box
-                style={{
-                    textAlign: 'center',
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                }}
-            >
-                {!isLoggedin ? (
-                    <>
-                        <button component={Link} to="http://localhost:8000/auth/google">
-                        Login
-                        </button>
-                    </>
-                ) : (
-                    <>
-                        <button onClickCapture={logout}>logout user</button>
-                    </>
-                )}
-            </Box>
-        </>
-    )
+        else {
+            // PUT PERSONAL STATS HERE 
+            return (
+                <div>
+                    HELLO
+                    
+                </div>
+            )
+            console.log("we're here")
+        }
+    
 }
+
+export default LogIn
