@@ -1,112 +1,108 @@
-import * as React from 'react';
-import Login from './Login'
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
+import * as React from 'react'
+import AppBar from '@mui/material/AppBar'
+import Box from '@mui/material/Box'
+import Toolbar from '@mui/material/Toolbar'
+import Typography from '@mui/material/Typography'
+import IconButton from '@mui/material/IconButton'
+import MenuIcon from '@mui/icons-material/Menu'
+import BarChartIcon from '@mui/icons-material/BarChart'
+import InfoIcon from '@mui/icons-material/Info'
+import { Avatar } from '@mui/material'
+import CategoriesDrawer from './CategoriesDrawer'
+import ProfileDrawer from './ProfileDrawer'
 
-import Menu from '@mui/material/Menu';
-import Button from '@mui/material/Button'
-import Modal from '@mui/material/Modal'
-//new changes
+const MenuAppBar = (props) => {
+    const [isCategoriesDrawerOpen, setIsCategoriesDrawerOpen] =
+        React.useState(false)
+    const [isUserDrawerOpen, setIsUserDrawerOpen] = React.useState(false)
+    // const [userAvatar, setUserAvatar] = React.useState(null)
 
-const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  height: 400,
-  width: 300,
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
-  boxShadow: 24,
-  p: 4,
-};
+    return (
+        <>
+            <Box sx={{ flexGrow: 1 }}>
+                <AppBar position="relative" style={{ zIndex: 24 }}>
+                    <Toolbar>
+                        <IconButton
+                            size="large"
+                            edge="start"
+                            color="inherit"
+                            aria-label="menu"
+                            sx={{ mr: 2 }}
+                            onClick={() => {
+                                setIsCategoriesDrawerOpen(
+                                    (isDrawerOpen) => !isDrawerOpen
+                                )
+                            }}
+                        >
+                            <MenuIcon fontSize="large" />
+                        </IconButton>
+                        <Typography
+                            variant="h4"
+                            component="div"
+                            align="center"
+                            sx={{ flexGrow: 1, marginLeft: 20 }}
+                        >
+                            Pictle
+                        </Typography>
+                        <IconButton
+                            size="large"
+                            edge="end"
+                            color="inherit"
+                            aria-label="menu"
+                            sx={{ mr: 2 }}
+                        >
+                            <InfoIcon fontSize="large" />
+                        </IconButton>
+                        <IconButton
+                            size="large"
+                            edge="end"
+                            color="inherit"
+                            aria-label="menu"
+                            sx={{ mr: 2 }}
+                        >
+                            <BarChartIcon fontSize="large" />
+                        </IconButton>
 
+                        <IconButton
+                            size="large"
+                            edge="end"
+                            color="inherit"
+                            aria-label="menu"
+                            sx={{ mr: 2 }}
+                            onClick={() => {
+                                setIsUserDrawerOpen(
+                                    (isDrawerOpen) => !isDrawerOpen
+                                )
+                            }}
+                        >
+                            <Avatar
+                                sx={{ background: 'white' }}
+                                alt="avatar"
+                                src="https://avatars.dicebear.com/api/pixel-art/+dfe332a.svg"
+                            />
+                        </IconButton>
+                    </Toolbar>
+                </AppBar>
+                <CategoriesDrawer
+                    gameMode={props.gameMode}
+                    setGameMode={props.setGameMode}
+                    level={props.level}
+                    setLevel={props.setLevel}
+                    open={isCategoriesDrawerOpen}
+                    onClose={() => {
+                        setIsCategoriesDrawerOpen(false)
+                    }}
 
-export default function MenuAppBar() {
-  const [auth, setAuth] = React.useState(true);
-  const [anchorEl, setAnchorEl] = React.useState(null);
-
-  const handleChange = (event) => {
-    setAuth(event.target.checked);
-  };
-
-  const handleMenu = (event) => {
-    setAnchorEl(event.currentTarget);
-      };
-
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
-
-  return (
-    <Box sx={{ flexGrow: 1 }}>
-      {/* <FormGroup>
-        <FormControlLabel
-          control={
-            <Switch
-              checked={auth}
-              onChange={handleChange}
-              aria-label="login switch"
-            />
-          }
-          label={auth ? 'Logout' : 'Login'}
-        />
-      </FormGroup> */}
-      <AppBar position="static" color="transparent">
-        <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            sx={{ mr: 2 }}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Button variant="h3" 
-            sx={{ 
-              // flexGrow: 1 , 
-              fontWeight: 900, 
-              fontSize: 30,
-              maxBlockSize: 400,
-              maxWidth: 150,
-              display: 'flex',
-              margin: 'auto'
-              }}>
-            PICTLE
-          </Button>
-         
-            <div>
-              <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-                {/* {pages.map((page) => ( */}
-                  <Button
-                    // key={Account}
-                    onClick={handleOpen}
-                    sx={{ my: 2, color: '#212121', display: 'block' }}
-                  >
-                    Account
-                  </Button>
-                  {/* ))} */}
-                  <Modal
-                        open={open}
-                        onClose={handleClose}
-                        aria-labelledby="modal-modal-title"
-                        aria-describedby="modal-modal-description"
-                      >
-                      <Box sx={style}>
-                        <Login/>
-                      </Box>
-                  </Modal>
-              </Box>
-            </div>
-          
-        </Toolbar>
-      </AppBar>
-    </Box>
-    
-  );
+                ></CategoriesDrawer>
+                <ProfileDrawer
+                    open={isUserDrawerOpen}
+                    onClose={() => {
+                        setIsUserDrawerOpen(false)
+                    }}
+                ></ProfileDrawer>
+            </Box>
+        </>
+    )
 }
+
+export default MenuAppBar
