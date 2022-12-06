@@ -22,7 +22,7 @@ function App() {
 
     const [solution, setSolution] = useState('')
     useEffect(() => {
-            setSolution("Spiffin")
+            setSolution("e treme")
           
       }, [setSolution])
 
@@ -32,12 +32,9 @@ function App() {
             <>
                 <h1>{result}</h1>
                 <img src={"https:"+testImage} alt="testImage" />
+                {solution && <Wordle solution={solution} />}
             </>
-        ) && (
-            <div className="App">
-              {solution && <Wordle solution={solution} />}
-            </div>
-          )
+        )
     )
 }
 
