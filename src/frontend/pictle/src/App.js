@@ -7,10 +7,13 @@ import Grid from '@mui/material/Grid'
 
 function App() {
     const [gameMode, setGameMode] = useState('')
+    const [level, setLevel] = React.useState(-1)
 
     return (
         <>
-            <MenuAppBar gameMode={gameMode} setGameMode={setGameMode} />
+            <MenuAppBar gameMode={gameMode} setGameMode={setGameMode} 
+            level={level}
+            setLevel={setLevel}/>
 
             <Grid container alignContent={'center'}>
                 <Grid
@@ -19,7 +22,9 @@ function App() {
                     justifyContent={'center'}
                     sx={{ marginTop: 6 }}
                 >
-                    <Game gameMode={gameMode} />
+                    <Game gameMode={gameMode} 
+                    level={level}
+                    setLevel={setLevel}/>
                 </Grid>
             </Grid>
         </>
