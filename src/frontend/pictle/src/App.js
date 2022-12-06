@@ -4,13 +4,14 @@ import axios from './axios'
 import MenuAppBar from './components/MenuAppBar'
 import {Grid, Button, Box, Typography } from "@mui/material"
 import Board from './components/board'
+import Category from './components/category'
 
 function App() {
     const [result, setResult] = useState('')
     const [testImage, setTestImage] = useState('')
     useEffect(() => {
         axios.get('api/hello').then((response) => {
-            setResult(response.data)
+            setResult(response.data.result)
         })
 
         axios.get('/dev/testimage').then((response) => {
@@ -24,9 +25,12 @@ function App() {
         // })
     }, [])
 
+
+
+
     return (
         
-            <><>
+            <><><>
             <MenuAppBar />
             {/* <h1>{result}</h1> */}
             <Grid
@@ -37,12 +41,16 @@ function App() {
                 <img src={testImage} alt="testImage" width={200} />
             </Grid>
         </>
-        {/* leaderboard */}
-        <>
+            {/* leaderboard */}
+            <>
                 <div className='App' id='main'>
                     <Board></Board>
                 </div>
-        </></>
+            </></><>
+                <div className='App' id='main'>
+                    <Category></Category>
+                </div>
+            </></>
                 
         
     )
