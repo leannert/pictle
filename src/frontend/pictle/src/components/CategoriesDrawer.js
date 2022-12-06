@@ -24,6 +24,7 @@ const CategoriesDrawer = (props) => {
                     <ListItemButton
                         onClick={() => {
                             props.setGameMode('tracks')
+                            props.setLevel(0)
                         }}
                     >
                         <ListItemIcon>
@@ -36,6 +37,7 @@ const CategoriesDrawer = (props) => {
                     <ListItemButton
                         onClick={() => {
                             props.setGameMode('games')
+                            props.setLevel(0)
                         }}
                     >
                         <ListItemIcon>
@@ -48,6 +50,7 @@ const CategoriesDrawer = (props) => {
                     <ListItemButton
                         onClick={() => {
                             props.setGameMode('movies')
+                            props.setLevel(0)
                         }}
                     >
                         <ListItemIcon>

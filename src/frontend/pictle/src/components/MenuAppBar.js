@@ -86,10 +86,13 @@ const MenuAppBar = (props) => {
                 <CategoriesDrawer
                     gameMode={props.gameMode}
                     setGameMode={props.setGameMode}
+                    level={props.level}
+                    setLevel={props.setLevel}
                     open={isCategoriesDrawerOpen}
                     onClose={() => {
                         setIsCategoriesDrawerOpen(false)
                     }}
+
                 ></CategoriesDrawer>
                 <ProfileDrawer
                     open={isUserDrawerOpen}
