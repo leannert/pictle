@@ -13,7 +13,8 @@ import Typography from '@mui/material/Typography'
 import Container from '@mui/material/Container'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 import { IconButton } from '@mui/material'
-import googleSignInLogo  from '../assets/googleSignInButton.svg'
+import googleSignInLogo from '../assets/googleSignInButton.svg'
+import axios from 'axios'
 
 function Copyright(props) {
     return (
@@ -24,7 +25,7 @@ function Copyright(props) {
             {...props}
         >
             {'Copyright © '}
-            <Link color="inherit" href="https://mui.com/">
+            <Link color="inherit" href=".">
                 Pictle
             </Link>{' '}
             {new Date().getFullYear()}
@@ -36,6 +37,14 @@ function Copyright(props) {
 const theme = createTheme()
 
 const LogIn = (props) => {
+    const [failedLogin, setFailedLogin] = React.useState(false)
+
+    React.useEffect(() => {
+        if (props.user) {
+            console.log(props.user)
+        }
+    }, [props.user])
+
     const handleSubmit = (event) => {
         event.preventDefault()
         const data = new FormData(event.currentTarget)
@@ -43,6 +52,23 @@ const LogIn = (props) => {
             email: data.get('email'),
             password: data.get('password'),
         })
+
+        const getUser = async () => {
+            try {
+                await axios
+                    .get('/users/email/' + data.get('email'))
+                    .then((response) => {
+                        var user = response.data
+                        if (user.password === data.get('password')) {
+                            setFailedLogin(false)
+                            props.setUser(user)
+                        }
+                    })
+            } catch (error) {
+                setFailedLogin(true)
+            }
+        }
+        getUser()
     }
 
     return (
@@ -66,7 +92,7 @@ const LogIn = (props) => {
                             marginTop: 1,
                         }}
                         alt="avatar"
-                        src="https://avatars.dicebear.com/api/pixel-art/+dfe334322122124566532a.svg"
+                        src={props.userAvatar}
                     />
                     <Typography component="h1" variant="h5">
                         Sign in
@@ -78,7 +104,7 @@ const LogIn = (props) => {
                             marginTop: 2,
                         }}
                         href="http://localhost:8000/auth/google"
-                        >
+                    >
                         <img src={googleSignInLogo} />
                     </Button>
                     <Box
@@ -88,6 +114,7 @@ const LogIn = (props) => {
                         sx={{ mt: 1 }}
                     >
                         <TextField
+                            error={failedLogin}
                             margin="normal"
                             // required
                             fullWidth
@@ -98,6 +125,7 @@ const LogIn = (props) => {
                             autoFocus
                         />
                         <TextField
+                            error={failedLogin}
                             margin="normal"
                             // required
                             fullWidth
@@ -106,12 +134,6 @@ const LogIn = (props) => {
                             type="password"
                             id="password"
                             autoComplete="current-password"
-                        />
-                        <FormControlLabel
-                            control={
-                                <Checkbox value="remember" color="primary" />
-                            }
-                            label="Remember me"
                         />
                         <Button
                             type="submit"

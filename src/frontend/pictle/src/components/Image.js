@@ -74,8 +74,6 @@ export default function Image(props) {
             case 5:
                 setPixelSize(0)
         }
-        console.log(pixelSize)
-        console.log(props.level)
     }, [props.level, pixelSize])
 
     return (

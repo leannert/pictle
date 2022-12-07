@@ -12,10 +12,16 @@ import CategoriesDrawer from './CategoriesDrawer'
 import ProfileDrawer from './ProfileDrawer'
 
 const MenuAppBar = (props) => {
-    const [isCategoriesDrawerOpen, setIsCategoriesDrawerOpen] =
-        React.useState(false)
+    const [isCategoriesDrawerOpen, setIsCategoriesDrawerOpen] = React.useState(false)
     const [isUserDrawerOpen, setIsUserDrawerOpen] = React.useState(false)
-    // const [userAvatar, setUserAvatar] = React.useState(null)
+    const [userAvatar, setUserAvatar] = React.useState('https://cdn0.iconfinder.com/data/icons/gaming-4/512/5-512.png')
+
+    React.useEffect(() => {
+        if (props.user.pfp) {
+            setUserAvatar(props.user.pfp)
+        }
+    }, [props.user])
+
 
     return (
         <>
@@ -78,7 +84,7 @@ const MenuAppBar = (props) => {
                             <Avatar
                                 sx={{ background: 'white' }}
                                 alt="avatar"
-                                src="https://avatars.dicebear.com/api/pixel-art/+dfe332a.svg"
+                                src={userAvatar}
                             />
                         </IconButton>
                     </Toolbar>
@@ -95,6 +101,10 @@ const MenuAppBar = (props) => {
 
                 ></CategoriesDrawer>
                 <ProfileDrawer
+                    user={props.user}
+                    setUser={props.setUser}
+                    userAvatar={userAvatar}
+                    setUserAvatar={setUserAvatar}
                     open={isUserDrawerOpen}
                     onClose={() => {
                         setIsUserDrawerOpen(false)
