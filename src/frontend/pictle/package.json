@@ -18,6 +18,7 @@
     "prettier": "^2.7.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-native-web": "^0.18.10",
     "react-pixelate": "^0.0.1",
     "react-pixelify": "^0.2.2",
     "react-scripts": "5.0.1",
