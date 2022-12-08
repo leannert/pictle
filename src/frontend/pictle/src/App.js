@@ -12,7 +12,6 @@ function App() {
 
     const [loggedIn, setLoggedIn] = useState(false)
 
-
     useEffect(() => {
         if (user.username !== undefined) {
             setLoggedIn(true)
@@ -43,6 +42,10 @@ function App() {
                         gameMode={gameMode}
                         level={level}
                         setLevel={setLevel}
+                        user={user}
+                        setUser={setUser}
+                        loggedIn={loggedIn}
+                        setLoggedIn={setLoggedIn}
                     />
                 </Grid>
             </Grid>

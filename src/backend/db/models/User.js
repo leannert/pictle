@@ -70,6 +70,8 @@ const UserSchema = new mongoose.Schema(
                 winPercentage: 0,
                 currentStreak: 0,
                 maxStreak: 0,
+                totalScore: 0,
+                averageScore: 0,
                 guessDistribution: {
                     1: 0,
                     2: 0,
@@ -97,6 +99,18 @@ const UserSchema = new mongoose.Schema(
             },
 
             maxStreak: {
+                type: Number,
+                required: [true, "can't be blank"],
+                default: 0,
+            },
+
+            totalScore: {
+                type: Number,
+                required: [true, "can't be blank"],
+                default: 0,
+            },
+
+            averageScore: {
                 type: Number,
                 required: [true, "can't be blank"],
                 default: 0,

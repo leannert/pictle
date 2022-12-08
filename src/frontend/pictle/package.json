@@ -17,6 +17,7 @@
     "material-ui-image": "^3.3.2",
     "prettier": "^2.7.1",
     "react": "^18.2.0",
+    "react-confetti-explosion": "^1.5.1",
     "react-dom": "^18.2.0",
     "react-pixelate": "^0.0.1",
     "react-pixelify": "^0.2.2",
