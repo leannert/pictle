@@ -75,7 +75,6 @@ export default function Game(props) {
                     onClick={() => {
                         props.setLevel(0)
                         setIsCorrect(false)
-                        setGuess('')
                     }}
                 >
                     <ReplayIcon fontSize="large" />
