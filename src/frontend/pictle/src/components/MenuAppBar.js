@@ -10,12 +10,15 @@ import InfoIcon from '@mui/icons-material/Info'
 import { Avatar } from '@mui/material'
 import CategoriesDrawer from './CategoriesDrawer'
 import ProfileDrawer from './ProfileDrawer'
+import LeaderboardDrawer from './LeaderboardDrawer'
 
 const MenuAppBar = (props) => {
     const [isCategoriesDrawerOpen, setIsCategoriesDrawerOpen] =
         React.useState(false)
     const [isUserDrawerOpen, setIsUserDrawerOpen] = React.useState(false)
     // const [userAvatar, setUserAvatar] = React.useState(null)
+
+    const [isLeaderboardDrawerOpen, setIsLeaderboardDrawerOpen] = React.useState(false)
 
     return (
         <>
@@ -59,6 +62,12 @@ const MenuAppBar = (props) => {
                             color="inherit"
                             aria-label="menu"
                             sx={{ mr: 2 }}
+
+                            onClick={() => {
+                                setIsLeaderboardDrawerOpen(
+                                    (isDrawerOpen) => !isDrawerOpen
+                                )
+                            }}
                         >
                             <BarChartIcon fontSize="large" />
                         </IconButton>
@@ -83,6 +92,14 @@ const MenuAppBar = (props) => {
                         </IconButton>
                     </Toolbar>
                 </AppBar>
+
+                <LeaderboardDrawer
+                    open={isLeaderboardDrawerOpen}
+                    onClose={() => {
+                        setIsLeaderboardDrawerOpen(false)
+                    }}
+                ></LeaderboardDrawer>
+
                 <CategoriesDrawer
                     gameMode={props.gameMode}
                     setGameMode={props.setGameMode}
