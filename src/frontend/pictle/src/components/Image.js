@@ -87,7 +87,8 @@ export default function Image(props) {
     return (
         <>
             <Box
-                alignContent={'center'}
+                
+                
                 sx={{
                     color: 'red',
                     width: '460px',
@@ -103,6 +104,8 @@ export default function Image(props) {
                 />
                 <Wordle solution={image_solution.toLowerCase()} />
             </Box> 
+
+            
             
         </> 
     )
