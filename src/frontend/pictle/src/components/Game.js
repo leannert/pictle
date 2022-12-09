@@ -1,17 +1,16 @@
 import * as React from 'react'
 import Box from '@mui/material/Box'
 import Image from './Image'
-import { Button, Paper } from '@mui/material'
 import TextField from '@mui/material/TextField'
 import ConfettiExplosion from 'react-confetti-explosion'
+import ReplayIcon from '@mui/icons-material/Replay'
+import IconButton from '@mui/material/IconButton'
 
 export default function Game(props) {
     const [guess, setGuess] = React.useState('')
     const [answer, setAnswer] = React.useState('')
     const [isCorrect, setIsCorrect] = React.useState(false)
     const [score, setScore] = React.useState(0)
-    
-
 
     React.useEffect(() => {
         switch (props.level) {
@@ -33,16 +32,9 @@ export default function Game(props) {
             case 6:
                 setScore(0)
                 break
+
         }
     }, [props.level])
-
-    React.useEffect(() => {
-        console.log('answer:', answer)
-    }, [answer])
-
-    React.useEffect(() => {
-        console.log('score:', score)
-    }, [score])
 
     const handleGuess = (event) => {
         event.preventDefault()
@@ -53,24 +45,45 @@ export default function Game(props) {
         ) {
             setIsCorrect(true)
             props.setLevel(-1)
-            console.log('correct')
         } else {
             props.setLevel(props.level + 1)
             setIsCorrect(false)
-            console.log('incorrect')
         }
     }
 
     return (
         <>
             <Box>
-                <Box
+                <IconButton
+                    size="large"
+                    edge="start"
+                    color="inherit"
+                    aria-label="menu"
                     sx={{
-                        marginLeft: 24,
-                        marginTop: 12,
                         position: 'absolute',
+                        top: 580,
+                        left: 420,
+                        zIndex: 24,
+                        backgroundColor: 'black',
+                        borderRadius: 10,
+                        color: 'white',
+                        ':hover': {
+                            backgroundColor: '#a0a6bd',
+                            color: 'white',
+                        },
+                    }}
+                    onClick={() => {
+                        props.setLevel(0)
+                        setIsCorrect(false)
+                        setGuess('')
                     }}
                 >
+                    <ReplayIcon fontSize="large" />
+                </IconButton>
+                <Box
+                sx={{
+                    position: 'absolute', left: 750, top: 160
+                }}>
                     {isCorrect && (
                         <ConfettiExplosion particleCount={150} force={0.9} />
                     )}
@@ -93,33 +106,31 @@ export default function Game(props) {
                         marginLeft: 10,
                     }}
                 >
-                    <TextField
-                        sx={{
-                            width: 300,
-                        }}
-                        id="guess"
-                        name="guess"
-                        variant="outlined"
-                        value={guess}
-                        onChange={(event) => setGuess(event.target.value)}
-                        color={isCorrect ? 'success' : ''}
-                        
-                        inputProps={{
-                            style: {
-                                textTransform: 'uppercase',
-                                textAlign: 'center',
-                                fontSize: 20,
-                            },
-                            readOnly: isCorrect || props.level >= 5,
-                        }}
-                    />
+                    <Box>
+                        <TextField
+                            sx={{
+                                width: 400, right: 50
+                            }}
+                            id="guess"
+                            name="guess"
+                            variant="outlined"
+                            autoComplete="off"
+                            value={guess}
+                            onChange={(event) => setGuess(event.target.value)}
+                            color={isCorrect ? 'success' : ''}
+                            inputProps={{
+                                style: {
+                                    textTransform: 'uppercase',
+                                    textAlign: 'center',
+                                    fontSize: 20,
+                                },
+                                readOnly: isCorrect || props.level >= 5
+                            }}
+                        />
+                    </Box>
                 </Box>
-                <Box
-                    sx={{
-                        textAlign: 'center',
-                    }}
-                >
-                    {props.level > -1  && props.level <= 4 && (
+                <Box>
+                    {props.level > -1 && props.level <= 4 && (
                         <h2>A correct guess here gets you {score} points!</h2>
                     )}
 
@@ -129,10 +140,11 @@ export default function Game(props) {
 
                     {props.level >= 5 && (
                         <>
-                        <h2>Game over! The correct answer was...
-                            <br />
-                            {answer}
-                        </h2>
+                            <h2>
+                                Game over! The correct answer was...
+                                <br />
+                                {answer}
+                            </h2>
                         </>
                     )}
                 </Box>

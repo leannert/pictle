@@ -25,6 +25,14 @@ export async function initializeDB() {
         '5oB1tNVDWdXPqUU3gDBMrR?si=43543f1d530c440a'
     )
 
+    const playlist2 = await getPlaylistTracks(
+        '7f089wYUXs6qI2gQgQUpPu?si=860c255be65945d2'
+    )
+
+    playlist2.forEach((track) => {
+        playlist.push(track)
+    })
+
     console.log('playlist items array length is ' + playlist.length)
 
     playlist.forEach(async (track) => {

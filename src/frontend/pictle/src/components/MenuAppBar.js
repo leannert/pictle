@@ -136,7 +136,6 @@ const MenuAppBar = (props) => {
                     boxShadow: 24,
                     p: 4,
                     transform: 'translate(-50%, -50%)',
-                    
                 }}>
                     <Typography
                         id="modal-modal-title"
