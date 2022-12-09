@@ -6,19 +6,21 @@ import MenuAppBar from './components/MenuAppBar'
 import Game from './components/Game'
 import Grid from '@mui/material/Grid'
 import Wordle from './components/Wordle'
+import Image from './components/Image'
 import axios from './axios'
 
 
-function App() {
+function App(image_solution) {
     const [gameMode, setGameMode] = useState('')
     const [level, setLevel] = React.useState(-1)
 
 
-    const [solution, setSolution] = useState('')
-    useEffect(() => {
-            setSolution("e treme")
+    // const [solution, setSolution] = useState('')
+    // useEffect(() => {
+    //         setSolution("fi")
           
-      }, [setSolution])
+    //   }, [setSolution])
+
 
 
     return (
@@ -39,7 +41,7 @@ function App() {
                     setLevel={setLevel}/>
                 </Grid>
             </Grid>
-            <Wordle solution={solution} />
+            
             
         </>
     )
