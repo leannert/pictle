@@ -14,8 +14,11 @@ import Container from '@mui/material/Container'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 import { IconButton } from '@mui/material'
 import googleSignInLogo  from '../assets/googleSignInButton.svg'
+import { usersRouter } from '../../../../backend/routes/users'
 
 const theme = createTheme()
+
+const user_data = usersRouter.get
 
 const Board = (props) => {
     const handleSubmit = (event) => {
@@ -49,16 +52,20 @@ const Board = (props) => {
                         }}
                     >
 
-                        <Grid container rowSpacing={4} columnSpacing={2} justifyContent="center" alignItems="center" columns={3}>
+                        <Grid container rowSpacing={4} columnSpacing={1} justifyContent="center" alignItems="center" columns={4}>
                             <Grid item rank md={1}>
                                 <item>Rank</item>
                             </Grid>
                             <Grid item userName md={1}>
                                 <item>Username</item>
                             </Grid>
+                            <Grid item gamePlay md={1}>
+                                <item># Games <br/> Played</item>
+                            </Grid>
                             <Grid item score md={1}>
                                 <item>Score</item>
                             </Grid>
+                            
 
 
                             {/* First user */}
@@ -67,6 +74,9 @@ const Board = (props) => {
                             </Grid>
                             <Grid item userName md={1}>
                                 <item>TestUser1</item>
+                            </Grid>
+                            <Grid item gamePlay md={1}>
+                                <item>3</item>
                             </Grid>
                             <Grid item score md={1}>
                                 <item>14</item>
@@ -80,6 +90,9 @@ const Board = (props) => {
                             <Grid item userName md={1}>
                                 <item>TestUser2</item>
                             </Grid>
+                            <Grid item gamePlay md={1}>
+                                <item>2</item>
+                            </Grid>
                             <Grid item score md={1}>
                                 <item>4</item>
                             </Grid>
@@ -90,6 +103,9 @@ const Board = (props) => {
                             </Grid>
                             <Grid item userName md={1}>
                                 <item>TestUser3</item>
+                            </Grid>
+                            <Grid item gamePlay md={1}>
+                                <item>3</item>
                             </Grid>
                             <Grid item score md={1}>
                                 <item>2</item>
@@ -103,6 +119,9 @@ const Board = (props) => {
                             <Grid item userName md={1}>
                                 <item>TestUser4</item>
                             </Grid>
+                            <Grid item gamePlay md={1}>
+                                <item>2</item>
+                            </Grid>
                             <Grid item score md={1}>
                                 <item>7</item>
                             </Grid>
@@ -114,6 +133,9 @@ const Board = (props) => {
                             </Grid>
                             <Grid item userName md={1}>
                                 <item>TestUser5</item>
+                            </Grid>
+                            <Grid item gamePlay md={1}>
+                                <item>3</item>
                             </Grid>
                             <Grid item score md={1}>
                                 <item>5</item>
