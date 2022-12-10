@@ -1,20 +1,14 @@
 # Pictle
 Pictle is a web application guessing game between an image and its appropriate title. It is inspired by the crossword game Wordle published by the New York Times.
 
-In Pictle, a player's vocabulary and memorization abilities are evaluated. A player can choose from two categories: music album covers and movie posters. A random pixelated image from a selected category will be shown. The player must identify the title and/or name of the image. 
+In Pictle, a player's vocabulary and memorization abilities are evaluated. A player can choose from two categories: music album covers and movie posters. A random pixelated image from a selected category will be shown. The player must identify the title and/or name of the image. Underneath the displayed image, there is a text-box that users will type in their guesses.
 
-There are three highlight colors when entering English alphabet letters to complete the word or phrase, one for each sort of letter : green denotes that the letter is both present and in the correct place of the word ; yellow denotes that the letter is present but in the wrong place of the word ; and gray denotes that the letter is not present in the word at all. To succeed, a player must uncover the title of the disguised image, in which all letters have a green highlight.
-
-It's easy to understand, but also challenging. It's not quite that straightforward, but a player may use all twenty-six letters of the alphabet to create the title associated with the image. 
+It's easy to understand, but also challenging. It's not quite that straightforward, but a player may use all twenty-six letters of the alphabet, as well as the space character, to create the title associated with the image. 
 
 ## Gameplay
-The goal of the game is for players to correcly guess a variable-letter word or phrase within five attempts given a pixelated image. The guess will be entered in a row of grid-like boxes. The size of the grid row will vary with the appropriate title / name length of the image. 
-
-Each letter is assigned a color after each guess: green, yellow, or gray. Green denotes that the letter is correct and in the proper place. Yellow denotes that the letter is in the answer, but not in the proper place. Gray denotes that the letter is not in the answer at all. Multiple occurrences of a letter in a guess, such as "a" in the word "Avatar", will only be highlighted in green or yellow if the same letter also appears more than once in the solution. Otherwise, repeated letters in excess will be highlighted in gray. 
+The goal of the game is for players to correcly guess a variable-letter word or phrase within five attempts given a pixelated image. The image will appear when a player selects their desired category in the side menubar. There will also be points assigned to the guess attempt, ranging from 0 to 1000 points. The most pixelated image will have the highest points (1000) assigned that a player can obtain if they guess the correct title to the picture. With each incorrect guess that a player makes, the given image will become less pixelated and more clear to view. However, this also means that the points assigned to the image will be less as well. If a player completely fails to enter the correct answer, then the points obtained is 0. When the game round ends, regardless if a player wins or loses in guessing the correct title and/or name of the image, he or she will be able to play again with a new pixelated image from the category via a buttom located above the text-box.
 
 It is important to note that Pictle does not distinguish between lowercase and uppercase letters. In other words, a player's answer is case-insensitive. The game automatically stores the letters that a player enters as their guess.
-
-If a player enters an incorrect guess, the given image will become less pixelated and more clear to view.
 
 A player may also log in to play Pictle. They may connect their account to a 3rd party service, specifically Google using OAuth. This will also allow the player to keep track of their progress on a leaderboard. 
 
@@ -68,3 +62,8 @@ $ npm start
 This is to be done in the root directory of both the frontend and backend.
 
 The application should run on port 3000 in a browser: [http://localhost:3000](http://localhost:3000)
+
+## Future Implementations
+Similar to Wordle, we would like to implement rows of grid-like boxes for the guesses that a user inputs. The size of the grid row will vary with the appropriate title / name length of the image. Each box would highlight the letters of the guesses inputted by the user. There would be three highlight colors when entering English alphabet letters to complete the word or phrase, one for each sort of letter : green denotes that the letter is both present and in the correct place of the word ; yellow denotes that the letter is present but in the wrong place of the word ; and gray denotes that the letter is not present in the word at all. Multiple occurrences of a letter in a guess, such as "a" in the word "Avatar", will only be highlighted in green or yellow if the same letter also appears more than once in the solution. Otherwise, repeated letters in excess will be highlighted in gray. To succeed, a player must uncover the title of the disguised image, in which all letters have a green highlight. 
+
+We would also like to implement more categories for the players to select from. In the future, adding in more themes would provide more diversity and entertainment for users. It would allow for a more enjoyable experience for all. 
