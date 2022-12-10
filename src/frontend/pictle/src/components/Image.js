@@ -22,6 +22,15 @@ export default function Image(props) {
                     const response = await axios
                         .get('tracks/random')
                         .then((response) => {
+                            props.setGuess('')
+                            props.setIsCorrect(false)
+                            var albumName =
+                                response.data[0].spotify.album.name.replace(
+                                    /\([^()]*\)/g,
+                                    ''
+                                )
+
+                            props.setAnswer(albumName.replace(/^\s+|\s+$/g, ''))
                             setImage(
                                 response.data[0].spotify.album.images[0].url
                             )
@@ -37,6 +46,9 @@ export default function Image(props) {
                     const response = await axios
                         .get('games/random')
                         .then((response) => {
+                            props.setGuess('')
+                            props.setIsCorrect(false)
+                            props.setAnswer(response.data[0].igdb.name)
                             setImage(response.data[0].cover.url)
                             setLoading(false)
                         })
@@ -47,6 +59,9 @@ export default function Image(props) {
                     const response = await axios
                         .get('movies/random')
                         .then((response) => {
+                            props.setGuess('')
+                            props.setIsCorrect(false)
+                            props.setAnswer(response.data[0].tmdb.title)
                             setImage(response.data[0].tmdb.poster)
                             setLoading(false)
                             setSolution(response.data[0].tmdb.originalTitle)
@@ -75,13 +90,13 @@ export default function Image(props) {
                 setPixelSize(16)
                 break
             case 4:
-                setPixelSize(4)
+                setPixelSize(10)
                 break
             case 5:
+                setPixelSize(6)
+            case 6:
                 setPixelSize(0)
         }
-        console.log(pixelSize)
-        console.log(props.level)
     }, [props.level, pixelSize])
 
     return (

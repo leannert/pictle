@@ -15,3 +15,7 @@ googleAuthRouter.get(
         res.redirect('http://localhost:3000')
     }
 )
+
+googleAuthRouter.get('google/user', (req, res) => {
+    res.json(req.user)
+})

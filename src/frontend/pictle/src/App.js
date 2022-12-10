@@ -5,30 +5,34 @@ import './App.css'
 import MenuAppBar from './components/MenuAppBar'
 import Game from './components/Game'
 import Grid from '@mui/material/Grid'
-import Wordle from './components/Wordle'
-import Image from './components/Image'
-import axios from './axios'
 
-
-function App(image_solution) {
+function App() {
     const [gameMode, setGameMode] = useState('')
     const [level, setLevel] = React.useState(-1)
 
+    const [user, setUser] = useState({})
 
-    // const [solution, setSolution] = useState('')
-    // useEffect(() => {
-    //         setSolution("fi")
-          
-    //   }, [setSolution])
+    const [loggedIn, setLoggedIn] = useState(false)
 
-
+    useEffect(() => {
+        if (user.username !== undefined) {
+            setLoggedIn(true)
+        }
+    }, [user])
 
     return (
         <>
-            <MenuAppBar gameMode={gameMode} setGameMode={setGameMode} 
-            level={level}
-            setLevel={setLevel}/>
-            
+            <MenuAppBar
+                gameMode={gameMode}
+                setGameMode={setGameMode}
+                level={level}
+                setLevel={setLevel}
+                user={user}
+                setUser={setUser}
+                loggedIn={loggedIn}
+                setLoggedIn={setLoggedIn}
+            />
+
             <Grid container alignContent={'center'}>
                 <Grid
                     container
@@ -36,9 +40,15 @@ function App(image_solution) {
                     justifyContent={'center'}
                     sx={{ marginTop: 6 }}
                 >
-                    <Game gameMode={gameMode} 
-                    level={level}
-                    setLevel={setLevel}/>
+                    <Game
+                        gameMode={gameMode}
+                        level={level}
+                        setLevel={setLevel}
+                        user={user}
+                        setUser={setUser}
+                        loggedIn={loggedIn}
+                        setLoggedIn={setLoggedIn}
+                    />
                 </Grid>
             </Grid>
             

@@ -24,6 +24,18 @@ usersRouter.get('/:id', getUser, (req, res) => {
     res.json(res.user)
 })
 
+usersRouter.get('/email/:email', async (req, res) => {
+    try {
+        const user = await User.findOne({ email: req.params.email })
+        if (user == null) {
+            return res.status(404).json({ message: 'Cannot find user' })
+        }
+        res.json(user)
+    } catch (err) {
+        res.status(500).json({ message: err.message })
+    }
+})
+
 usersRouter.post('/', async (req, res) => {
     const user = new User({
         ObjectId: req.body.ObjectId,
