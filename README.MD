@@ -62,8 +62,3 @@ $ npm start
 This is to be done in the root directory of both the frontend and backend.
 
 The application should run on port 3000 in a browser: [http://localhost:3000](http://localhost:3000)
-
-## Future Implementations
-Similar to Wordle, we would like to implement rows of grid-like boxes for the guesses that a user inputs. The size of the grid row will vary with the appropriate title / name length of the image. Each box would highlight the letters of the guesses inputted by the user. There would be three highlight colors when entering English alphabet letters to complete the word or phrase, one for each sort of letter : green denotes that the letter is both present and in the correct place of the word ; yellow denotes that the letter is present but in the wrong place of the word ; and gray denotes that the letter is not present in the word at all. Multiple occurrences of a letter in a guess, such as "a" in the word "Avatar", will only be highlighted in green or yellow if the same letter also appears more than once in the solution. Otherwise, repeated letters in excess will be highlighted in gray. To succeed, a player must uncover the title of the disguised image, in which all letters have a green highlight. 
-
-We would also like to implement more categories for the players to select from. In the future, adding in more themes would provide more diversity and entertainment for users. It would allow for a more enjoyable experience for all. 
