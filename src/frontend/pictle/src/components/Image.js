@@ -4,6 +4,7 @@ import { ImagePixelated, ElementPixelated } from 'react-pixelate'
 import { Pixelify } from 'react-pixelify'
 import CircularProgress from '@mui/material/CircularProgress'
 import { Box } from '@mui/system'
+import Wordle from './Wordle'
 
 export default function Image(props) {
     const [image, setImage] = useState(
@@ -11,6 +12,7 @@ export default function Image(props) {
     )
     const [loading, setLoading] = useState(true)
     const [pixelSize, setPixelSize] = useState(0)
+    const [image_solution, setSolution] = useState('')
 
     useEffect(() => {
         if (props.level === 0) {
@@ -33,6 +35,9 @@ export default function Image(props) {
                                 response.data[0].spotify.album.images[0].url
                             )
                             setLoading(false)
+                            setSolution(
+                                response.data[0].spotify.album.name
+                            )
                         })
                 }
                 getImage()
@@ -59,6 +64,7 @@ export default function Image(props) {
                             props.setAnswer(response.data[0].tmdb.title)
                             setImage(response.data[0].tmdb.poster)
                             setLoading(false)
+                            setSolution(response.data[0].tmdb.originalTitle)
                         })
                 }
                 getImage()
@@ -96,7 +102,8 @@ export default function Image(props) {
     return (
         <>
             <Box
-                alignContent={'center'}
+                
+                
                 sx={{
                     color: 'red',
                     width: '460px',
@@ -110,7 +117,11 @@ export default function Image(props) {
                     width={450}
                     height={450}
                 />
-            </Box>
-        </>
+                <Wordle solution={image_solution.toLowerCase()} />
+            </Box> 
+
+            
+            
+        </> 
     )
 }
