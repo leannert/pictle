@@ -117,7 +117,6 @@ export default function Image(props) {
                     width={450}
                     height={450}
                 />
-                <Wordle solution={image_solution.toLowerCase()} />
             </Box> 
 
             
