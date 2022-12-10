@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react'
+import { StyleSheet, View, SafeAreaView } from "react-native"
+import ReactDOM from 'react-dom'
 import './App.css'
 import MenuAppBar from './components/MenuAppBar'
 import Game from './components/Game'
@@ -49,8 +51,12 @@ function App() {
                     />
                 </Grid>
             </Grid>
+            
+            
         </>
     )
 }
 
-export default App
+
+  export default App
+ 
