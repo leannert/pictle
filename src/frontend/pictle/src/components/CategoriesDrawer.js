@@ -17,7 +17,6 @@ const CategoriesDrawer = (props) => {
                 width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 350,
                 marginTop: 8,
             }}
-            role="presentation"
         >
             <List>
                 <ListItem>

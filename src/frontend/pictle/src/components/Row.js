@@ -32,7 +32,7 @@ export default function Row({ guess, currentGuess, solution }) {
     return (
         <div className="row">
              {[...Array(solution.length)].map((_,i) => (
-                <div ></div>
+                <div key={i}></div>
             ))}
 
         </div>

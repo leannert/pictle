@@ -12,7 +12,7 @@ export default function Image(props) {
     )
     const [loading, setLoading] = useState(true)
     const [pixelSize, setPixelSize] = useState(0)
-    const [image_solution, setSolution] = useState('')
+    
 
     useEffect(() => {
         if (props.level === 0) {
@@ -35,9 +35,6 @@ export default function Image(props) {
                                 response.data[0].spotify.album.images[0].url
                             )
                             setLoading(false)
-                            setSolution(
-                                response.data[0].spotify.album.name
-                            )
                         })
                 }
                 getImage()
@@ -64,7 +61,6 @@ export default function Image(props) {
                             props.setAnswer(response.data[0].tmdb.title)
                             setImage(response.data[0].tmdb.poster)
                             setLoading(false)
-                            setSolution(response.data[0].tmdb.originalTitle)
                         })
                 }
                 getImage()
@@ -90,11 +86,9 @@ export default function Image(props) {
                 setPixelSize(16)
                 break
             case 4:
-                setPixelSize(10)
+                setPixelSize(4)
                 break
             case 5:
-                setPixelSize(6)
-            case 6:
                 setPixelSize(0)
         }
     }, [props.level, pixelSize])
@@ -117,7 +111,6 @@ export default function Image(props) {
                     width={450}
                     height={450}
                 />
-                <Wordle solution={image_solution.toLowerCase()} />
             </Box> 
 
             

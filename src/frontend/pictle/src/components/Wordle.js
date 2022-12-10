@@ -4,8 +4,8 @@ import useWordle from '../hooks/useWordle'
 // components
 import Grid from './Grid'
 
-export default function Wordle({ solution }) {
-  const { currentGuess, guesses, turn, isCorrect, handleKeyup } = useWordle(solution)
+export default function Wordle({ solution, setLevel }) {
+  const { currentGuess, guesses, turn, isCorrect, handleKeyup } = useWordle(solution, setLevel)
   
   useEffect(() => {
     window.addEventListener('keyup', handleKeyup)

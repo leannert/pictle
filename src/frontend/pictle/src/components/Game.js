@@ -5,6 +5,7 @@ import TextField from '@mui/material/TextField'
 import ConfettiExplosion from 'react-confetti-explosion'
 import ReplayIcon from '@mui/icons-material/Replay'
 import IconButton from '@mui/material/IconButton'
+import Wordle from './Wordle'
 
 export default function Game(props) {
     const [guess, setGuess] = React.useState('')
@@ -54,7 +55,7 @@ export default function Game(props) {
     return (
         <>
             <Box>
-                <IconButton
+                {/* <IconButton
                     size="large"
                     edge="start"
                     color="inherit"
@@ -78,7 +79,7 @@ export default function Game(props) {
                     }}
                 >
                     <ReplayIcon fontSize="large" />
-                </IconButton>
+                </IconButton> */}
                 <Box
                 sx={{
                     position: 'absolute', left: 750, top: 160
@@ -106,7 +107,7 @@ export default function Game(props) {
                     }}
                 >
                     <Box>
-                        <TextField
+                        {/* <TextField
                             sx={{
                                 width: 400, right: 50
                             }}
@@ -125,11 +126,16 @@ export default function Game(props) {
                                 },
                                 readOnly: isCorrect || props.level >= 5
                             }}
-                        />
+                        /> */}
+                        <Wordle solution={answer.toLowerCase()}
+                        sx ={{
+                            width: 400, right: 50
+                        }}
+                        setLevel={props.setLevel}/>
                     </Box>
                 </Box>
                 <Box>
-                    {props.level > -1 && props.level <= 4 && (
+                    {/* {props.level > -1 && props.level <= 4 && (
                         <h2>A correct guess here gets you {score} points!</h2>
                     )}
 
@@ -145,7 +151,7 @@ export default function Game(props) {
                                 {answer}
                             </h2>
                         </>
-                    )}
+                    )} */}
                 </Box>
             </Box>
         </>
