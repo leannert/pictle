@@ -5,6 +5,8 @@ In Pictle, a player's vocabulary and memorization abilities are evaluated. A pla
 
 It's easy to understand, but also challenging. It's not quite that straightforward, but a player may use all twenty-six letters of the alphabet, as well as the space character, to create the title associated with the image. 
 
+Please click the following link to a Google Drive, which contains a short demo-clip of Pictle: [Pictle Demo](https://drive.google.com/file/d/1uT7Ht2HUd33L1Jci4r6WU8oFYDDdOxrW/view?usp=sharing)
+
 ## Gameplay
 The goal of the game is for players to correcly guess a variable-letter word or phrase within five attempts given a pixelated image. The image will appear when a player selects their desired category in the side menubar. There will also be points assigned to the guess attempt, ranging from 0 to 1000 points. The most pixelated image will have the highest points (1000) assigned that a player can obtain if they guess the correct title to the picture. With each incorrect guess that a player makes, the given image will become less pixelated and more clear to view. However, this also means that the points assigned to the image will be less as well. If a player completely fails to enter the correct answer, then the points obtained is 0. When the game round ends, regardless if a player wins or loses in guessing the correct title and/or name of the image, he or she will be able to play again with a new pixelated image from the category via a buttom located above the text-box.
 
