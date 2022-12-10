@@ -1,7 +1,7 @@
 # Pictle
 Pictle is a web application guessing game between an image and its appropriate title. It is inspired by the crossword game Wordle published by the New York Times.
 
-In Pictle, a player's vocabulary and memorization abilities are evaluated. A player can choose from two categories: music album covers and movie posters. A random pixelated image from the selected category will be shown. The player must identify the title and/or name of the image. 
+In Pictle, a player's vocabulary and memorization abilities are evaluated. A player can choose from two categories: music album covers and movie posters. A random pixelated image from a selected category will be shown. The player must identify the title and/or name of the image. 
 
 There are three highlight colors when entering English alphabet letters to complete the word or phrase, one for each sort of letter : green denotes that the letter is both present and in the correct place of the word ; yellow denotes that the letter is present but in the wrong place of the word ; and gray denotes that the letter is not present in the word at all. To succeed, a player must uncover the title of the disguised image, in which all letters have a green highlight.
 
